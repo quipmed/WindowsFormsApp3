@@ -8,6 +8,7 @@ namespace WindowsFormsApp3
 {
     static class Program
     {
+
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -16,7 +17,7 @@ namespace WindowsFormsApp3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new remi());
         }
     }
 }
