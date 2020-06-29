@@ -70,11 +70,23 @@
     <Compile Include="clientes.Designer.cs">
       <DependentUpon>clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="consulrta_remi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="consulrta_remi.Designer.cs">
+      <DependentUpon>consulrta_remi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu.Designer.cs">
+      <DependentUpon>menu.cs</DependentUpon>
     </Compile>
     <Compile Include="productos.cs">
       <SubType>Form</SubType>
@@ -99,8 +111,14 @@
     <EmbeddedResource Include="clientes.resx">
       <DependentUpon>clientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="consulrta_remi.resx">
+      <DependentUpon>consulrta_remi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu.resx">
+      <DependentUpon>menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="productos.resx">
       <DependentUpon>productos.cs</DependentUpon>
@@ -151,6 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\milllogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace WindowsFormsApp3
         readonly DataTable dt = new DataTable();
         readonly DataTable dt2 = new DataTable();
         readonly DataTable dt3 = new DataTable();
+        public string consecu;
 
         public remi()
         {
@@ -39,9 +41,7 @@ namespace WindowsFormsApp3
             dataGridView2.Columns[0].Name = "ID";
             dataGridView2.Columns[1].Name = "NOMBRE";
             dataGridView2.Columns[2].Name = "Direccion";
-            dataGridView2.Columns[3].Name = "RFC";
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            //SELECTION MODE
+            dataGridView2.Columns[3].Name = "RFC";//SELECTION MODE
 
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.MultiSelect = false;
@@ -113,16 +113,28 @@ namespace WindowsFormsApp3
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
-           
+            if (comboBox1.SelectedValue.ToString() == "1")
+            {
+                pictureBox1.Image = pictureBox2.Image;
 
+            }
+            else {
+                pictureBox1.Image = pictureBox3.Image;
+            }
+            consecutivo();
 
-                empresa remisio3 = new empresa
-                {
-                    nombre = dt3.Rows[0].ItemArray[1].ToString(),
-                    rfc = dt3.Rows[0].ItemArray[2].ToString(),
-                    direccion = dt3.Rows[0].ItemArray[3].ToString(),
+            empresa remisio3 = new empresa
+            {
+                nombre = dt3.Rows[0].ItemArray[1].ToString(),
+                rfc = dt3.Rows[0].ItemArray[2].ToString(),
+                direccion = dt3.Rows[0].ItemArray[3].ToString(),
+                telefono = dt3.Rows[0].ItemArray[4].ToString(),
+                correo = dt3.Rows[0].ItemArray[5].ToString(),
+                logo = GetBytes(pictureBox1.Image),
+                serial = consecu,
 
-                };
+                fecha = DateTime.Now.ToShortDateString()
+            };
                 list3.Add(remisio3);
             
             rs3.Name = "DataSet3";
@@ -132,6 +144,38 @@ namespace WindowsFormsApp3
 
 
 
+        }
+        private void guard()
+        {
+            //SQL STMT
+            const string sql = "INSERT INTO remi_id(id_cliente,id_empresa,fecha,id_remi)" +
+                " VALUES(@id_cliente,@id_empresa,@fecha,@id_remi)";
+            cmd = new OleDbCommand(sql, con);
+
+            //ADD PARAMS
+            cmd.Parameters.AddWithValue("@id_cliente", comboBox2.SelectedValue);
+            cmd.Parameters.AddWithValue("@id_empresa", comboBox1.SelectedValue);
+            cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
+            cmd.Parameters.AddWithValue("@id_remi", consecu);
+
+            //OPEN CON AND EXEC INSERT
+            try
+            {
+                con.Open();
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    
+                    MessageBox.Show(@"Successfully Inserted");
+
+                }
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -167,7 +211,7 @@ namespace WindowsFormsApp3
                         descripcion = dataGridView1.Rows[i].Cells[1].Value.ToString(),
                         cantidad = dataGridView1.Rows[i].Cells[2].Value.ToString(),
                         pUnitario = pris,
-                        logo = GetBytes(pictureBox1.Image)
+                       
                     };
                     list.Add(remisio);
                 }
@@ -175,6 +219,7 @@ namespace WindowsFormsApp3
                 rs.Value = list;
                 cliente();
                 empres();
+                guard();
                 Form1 frm = new Form1();
                 frm.reportViewer1.LocalReport.DataSources.Clear();
                 frm.reportViewer1.LocalReport.DataSources.Add(rs);
@@ -208,13 +253,17 @@ namespace WindowsFormsApp3
             public string nombre { get; set; }
             public string rfc { get; set; }
             public string direccion { get; set; }
-
+            public string telefono { get; set; }
+            public string correo { get; set; }
+            public Byte[] logo { get; set; }
+            public string fecha { get; set; }
+            public string serial { get; set; }
 
         }
 
         public class remisio
         {
-            public Byte[] logo { get; set; }
+           
            public string nombre { get; set; }
          public string descripcion { get; set; }
             public string cantidad { get; set; }
@@ -222,7 +271,36 @@ namespace WindowsFormsApp3
         
         }
         remisiones remisiones = new remisiones();
-        private void combo()
+        DataTable dt4 = new DataTable();
+     
+        private void consecutivo()
+        {
+            dt4.Clear();
+            //SQL STATEMENTSELECT max(visitas) FROM enlace
+            String sql = "SELECT  (max(id_remi)+ 1)  FROM remi_id where id_empresa="+ comboBox1.SelectedValue+" ";
+            cmd = new OleDbCommand(sql, con);
+            try
+
+            {
+                con.Open();
+                adapter = new OleDbDataAdapter(cmd);
+                adapter.Fill(dt4);
+                //LOOP THROUGH DATATABLE
+                consecu = dt4.Rows[0].ItemArray[0].ToString();
+
+                con.Close();
+                //CLEAR DATATABLE 
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+
+        }
+            private void combo()
         {
          
             //SQL STATEMENT
@@ -440,16 +518,34 @@ namespace WindowsFormsApp3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int i;
-            i = dataGridView1.Rows.Count ;
-            dataGridView1.Rows.Add();
 
-            dataGridView1.Rows[i].Cells[0].Value = comboBox3.Text;
-            dataGridView1.Rows[i].Cells[1].Value = textBox2.Text;
-            dataGridView1.Rows[i].Cells[2].Value = numericUpDown1.Text;
-            dataGridView1.Rows[i].Cells[3].Value = numericUpDown2.Text;
+            if (comboBox3.SelectedValue != null)
+            {
+                if (textBox1.Text == "")
+                {
+                    textBox1.Text = "1";
+                }
+                if (textBox3.Text == "")
+                {
+                    textBox3.Text = "0";
+                }
+                int i;
+                i = dataGridView1.Rows.Count;
+                dataGridView1.Rows.Add();
+
+                dataGridView1.Rows[i].Cells[0].Value = comboBox3.Text;
+                dataGridView1.Rows[i].Cells[1].Value = textBox2.Text;
+                dataGridView1.Rows[i].Cells[2].Value = textBox1.Text;
+                dataGridView1.Rows[i].Cells[3].Value = textBox3.Text;
+            }
+            else
+            {
+                MessageBox.Show("vuelve a seleccionar el producto");
+
+            }
+            textBox1.Text = "1";
+            textBox3.Text = "0";
         }
-
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -457,10 +553,75 @@ namespace WindowsFormsApp3
 
         private void button3_Click(object sender, EventArgs e)
         {
+            dataGridView1.Enabled = false;
+            comboBox1.Enabled = true;
+            comboBox2.Enabled = true;
+            comboBox3.Enabled = false;
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button4.Enabled = true;
             dataGridView1.Rows.Clear();
-            numericUpDown1.Value = 0;
+            textBox1.Text = "1";
 
-            numericUpDown2.Value = 0;
+            textBox3.Text = "0";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CultureInfo cc = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            e.Handled = !(char.IsDigit(e.KeyChar)
+                    || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CultureInfo cc = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            e.Handled = !(char.IsDigit(e.KeyChar)
+                    || e.KeyChar == (char)Keys.Back
+                    || e.KeyChar.ToString() == cc.NumberFormat.NumberDecimalSeparator);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedValue != null)
+            {
+                textBox1.Text = "1";
+                textBox3.Text = "0";
+                dataGridView1.Enabled = true;
+                comboBox1.Enabled = false;
+                comboBox2.Enabled = false;
+                comboBox3.Enabled = true;
+                textBox1.Enabled = true;
+                textBox2.Enabled = true;
+                textBox3.Enabled = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button4.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("vuelve a seleccionar el cliente");
+            }
         }
     }
 }
