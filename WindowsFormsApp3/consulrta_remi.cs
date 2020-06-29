@@ -43,6 +43,7 @@ namespace WindowsFormsApp3
             dateTimePicker2.Value = DateTime.Now;
         }
         private void imprimir()
+
         {
 
         }

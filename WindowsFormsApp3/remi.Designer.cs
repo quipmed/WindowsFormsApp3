@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -50,6 +46,11 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.id_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -69,13 +70,14 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_prod,
             this.producto,
             this.descripcion,
             this.cantidad,
             this.pUnitario});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(91, 210);
+            this.dataGridView1.Location = new System.Drawing.Point(88, 176);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
@@ -83,33 +85,10 @@
             this.dataGridView1.Size = new System.Drawing.Size(606, 150);
             this.dataGridView1.TabIndex = 0;
             // 
-            // producto
-            // 
-            this.producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.producto.HeaderText = "Producto";
-            this.producto.Name = "producto";
-            // 
-            // descripcion
-            // 
-            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcion.HeaderText = "Descripcion";
-            this.descripcion.Name = "descripcion";
-            // 
-            // cantidad
-            // 
-            this.cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cantidad.HeaderText = "Cantidad";
-            this.cantidad.Name = "cantidad";
-            // 
-            // pUnitario
-            // 
-            this.pUnitario.HeaderText = "P. Unitario";
-            this.pUnitario.Name = "pUnitario";
-            // 
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(336, 366);
+            this.button1.Location = new System.Drawing.Point(333, 332);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 40);
             this.button1.TabIndex = 1;
@@ -121,7 +100,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(74, 56);
+            this.comboBox1.Location = new System.Drawing.Point(71, 22);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(193, 21);
             this.comboBox1.TabIndex = 2;
@@ -132,7 +111,7 @@
             this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(336, 51);
+            this.comboBox2.Location = new System.Drawing.Point(333, 17);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(215, 21);
             this.comboBox2.TabIndex = 4;
@@ -141,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 56);
+            this.label1.Location = new System.Drawing.Point(270, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 5;
@@ -150,7 +129,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 59);
+            this.label2.Location = new System.Drawing.Point(4, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 6;
@@ -159,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 97);
+            this.label4.Location = new System.Drawing.Point(10, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 10;
@@ -171,7 +150,7 @@
             this.comboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox3.Enabled = false;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(91, 95);
+            this.comboBox3.Location = new System.Drawing.Point(88, 61);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(177, 21);
             this.comboBox3.TabIndex = 9;
@@ -180,7 +159,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(273, 97);
+            this.label5.Location = new System.Drawing.Point(270, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 12;
@@ -189,7 +168,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(416, 97);
+            this.label6.Location = new System.Drawing.Point(413, 63);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 14;
@@ -198,7 +177,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(565, 94);
+            this.button2.Location = new System.Drawing.Point(562, 60);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(119, 44);
             this.button2.TabIndex = 16;
@@ -209,7 +188,7 @@
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(91, 144);
+            this.textBox2.Location = new System.Drawing.Point(88, 110);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -220,7 +199,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 162);
+            this.label7.Location = new System.Drawing.Point(2, 128);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 13);
             this.label7.TabIndex = 19;
@@ -228,7 +207,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(200, 366);
+            this.button3.Location = new System.Drawing.Point(197, 332);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(110, 40);
             this.button3.TabIndex = 20;
@@ -238,7 +217,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(574, 40);
+            this.button4.Location = new System.Drawing.Point(571, 6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(110, 40);
             this.button4.TabIndex = 21;
@@ -268,7 +247,7 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(336, 94);
+            this.textBox1.Location = new System.Drawing.Point(333, 60);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(80, 20);
             this.textBox1.TabIndex = 25;
@@ -279,12 +258,41 @@
             // textBox3
             // 
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(469, 95);
+            this.textBox3.Location = new System.Drawing.Point(466, 61);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(82, 20);
             this.textBox3.TabIndex = 26;
             this.textBox3.Text = "0";
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            // 
+            // id_prod
+            // 
+            this.id_prod.HeaderText = "id_prod";
+            this.id_prod.Name = "id_prod";
+            this.id_prod.Visible = false;
+            // 
+            // producto
+            // 
+            this.producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            // 
+            // descripcion
+            // 
+            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcion.HeaderText = "Descripcion";
+            this.descripcion.Name = "descripcion";
+            // 
+            // cantidad
+            // 
+            this.cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.Name = "cantidad";
+            // 
+            // pUnitario
+            // 
+            this.pUnitario.HeaderText = "P. Unitario";
+            this.pUnitario.Name = "pUnitario";
             // 
             // pictureBox3
             // 
@@ -322,7 +330,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 415);
+            this.ClientSize = new System.Drawing.Size(743, 422);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox3);
@@ -365,10 +373,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pUnitario;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -387,5 +391,10 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_prod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pUnitario;
     }
 }

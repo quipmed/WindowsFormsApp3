@@ -145,6 +145,52 @@ namespace WindowsFormsApp3
 
 
         }
+        private void guard2()
+        {
+           
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                string id_remi, id_producto, cantidad, costo, descripcion;
+
+                id_remi = consecu;
+                id_producto = dataGridView1[0, row.Index].Value.ToString();
+                cantidad = dataGridView1[3, row.Index].Value.ToString();
+                costo = dataGridView1[4, row.Index].Value.ToString();
+                descripcion = dataGridView1[2, row.Index].Value.ToString();
+                //SQL STMT
+                const string sql = "INSERT INTO remisiones(id_remi,id_producto,cantidad,costo,descripcion)" +
+                    " VALUES(@id_remi,@id_producto,@cantidad,@costo,@descripcion)";
+                cmd = new OleDbCommand(sql, con);
+
+                //ADD PARAMS
+                cmd.Parameters.AddWithValue("@id_remi", id_remi);
+                cmd.Parameters.AddWithValue("@id_producto", id_producto);
+                cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                cmd.Parameters.AddWithValue("@costo", costo);
+                cmd.Parameters.AddWithValue("@descripcion", descripcion);
+
+                //OPEN CON AND EXEC INSERT
+                try
+                {
+                    con.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+
+                        MessageBox.Show(@"Successfully Inserted");
+
+                    }
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    con.Close();
+                }
+
+            }
+
+        }
         private void guard()
         {
             //SQL STMT
@@ -176,6 +222,7 @@ namespace WindowsFormsApp3
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
+            guard2();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -199,7 +246,7 @@ namespace WindowsFormsApp3
                 {
 
 
-                    pris = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                    pris = dataGridView1.Rows[i].Cells[4].Value.ToString();
                     pris.Trim();
                     if (pris == "")
                     {
@@ -207,9 +254,9 @@ namespace WindowsFormsApp3
                     }
                     remisio remisio = new remisio
                     {
-                        nombre = dataGridView1.Rows[i].Cells[0].Value.ToString(),
-                        descripcion = dataGridView1.Rows[i].Cells[1].Value.ToString(),
-                        cantidad = dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                        nombre = dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                        descripcion = dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                        cantidad = dataGridView1.Rows[i].Cells[3].Value.ToString(),
                         pUnitario = pris,
                        
                     };
@@ -532,11 +579,11 @@ namespace WindowsFormsApp3
                 int i;
                 i = dataGridView1.Rows.Count;
                 dataGridView1.Rows.Add();
-
-                dataGridView1.Rows[i].Cells[0].Value = comboBox3.Text;
-                dataGridView1.Rows[i].Cells[1].Value = textBox2.Text;
-                dataGridView1.Rows[i].Cells[2].Value = textBox1.Text;
-                dataGridView1.Rows[i].Cells[3].Value = textBox3.Text;
+                dataGridView1.Rows[i].Cells[0].Value = comboBox3.SelectedValue;
+                dataGridView1.Rows[i].Cells[1].Value = comboBox3.Text;
+                dataGridView1.Rows[i].Cells[2].Value = textBox2.Text;
+                dataGridView1.Rows[i].Cells[3].Value = textBox1.Text;
+                dataGridView1.Rows[i].Cells[4].Value = textBox3.Text;
             }
             else
             {

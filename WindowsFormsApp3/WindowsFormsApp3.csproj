@@ -108,6 +108,12 @@
     <Compile Include="remisiones.Designer.cs">
       <DependentUpon>remisiones.cs</DependentUpon>
     </Compile>
+    <Compile Include="remision_consulcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="remision_consulcs.Designer.cs">
+      <DependentUpon>remision_consulcs.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="clientes.resx">
       <DependentUpon>clientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="remisiones.resx">
       <DependentUpon>remisiones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="remision_consulcs.resx">
+      <DependentUpon>remision_consulcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report2.rdlc" />
     <None Include="packages.config" />
