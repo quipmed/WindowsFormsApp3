@@ -122,7 +122,7 @@ namespace WindowsFormsApp3
                 pictureBox1.Image = pictureBox3.Image;
             }
             consecutivo();
-
+            string ob = observaciones.Text;
             empresa remisio3 = new empresa
             {
                 nombre = dt3.Rows[0].ItemArray[1].ToString(),
@@ -132,8 +132,9 @@ namespace WindowsFormsApp3
                 correo = dt3.Rows[0].ItemArray[5].ToString(),
                 logo = GetBytes(pictureBox1.Image),
                 serial = consecu,
-
+                observa =ob ,
                 fecha = DateTime.Now.ToShortDateString()
+
             };
                 list3.Add(remisio3);
             
@@ -150,16 +151,17 @@ namespace WindowsFormsApp3
            
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                string id_remi, id_producto, cantidad, costo, descripcion;
+                string id_remi, id_producto, cantidad, costo, descripcion,producto;
 
                 id_remi = consecu;
                 id_producto = dataGridView1[0, row.Index].Value.ToString();
                 cantidad = dataGridView1[3, row.Index].Value.ToString();
                 costo = dataGridView1[4, row.Index].Value.ToString();
                 descripcion = dataGridView1[2, row.Index].Value.ToString();
+                producto = dataGridView1[1, row.Index].Value.ToString();
                 //SQL STMT
-                const string sql = "INSERT INTO remisiones(id_remi,id_producto,cantidad,costo,descripcion)" +
-                    " VALUES(@id_remi,@id_producto,@cantidad,@costo,@descripcion)";
+                const string sql = "INSERT INTO remisiones(id_remi,id_producto,cantidad,costo,descripcion,producto)" +
+                    " VALUES(@id_remi,@id_producto,@cantidad,@costo,@descripcion,@producto)";
                 cmd = new OleDbCommand(sql, con);
 
                 //ADD PARAMS
@@ -168,6 +170,7 @@ namespace WindowsFormsApp3
                 cmd.Parameters.AddWithValue("@cantidad", cantidad);
                 cmd.Parameters.AddWithValue("@costo", costo);
                 cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                cmd.Parameters.AddWithValue("@producto", producto);
 
                 //OPEN CON AND EXEC INSERT
                 try
@@ -194,8 +197,8 @@ namespace WindowsFormsApp3
         private void guard()
         {
             //SQL STMT
-            const string sql = "INSERT INTO remi_id(id_cliente,id_empresa,fecha,id_remi)" +
-                " VALUES(@id_cliente,@id_empresa,@fecha,@id_remi)";
+            const string sql = "INSERT INTO remi_id(id_cliente,id_empresa,fecha,id_remi,observaciones)" +
+                " VALUES(@id_cliente,@id_empresa,@fecha,@id_remi,@observaciones)";
             cmd = new OleDbCommand(sql, con);
 
             //ADD PARAMS
@@ -203,6 +206,7 @@ namespace WindowsFormsApp3
             cmd.Parameters.AddWithValue("@id_empresa", comboBox1.SelectedValue);
             cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
             cmd.Parameters.AddWithValue("@id_remi", consecu);
+            cmd.Parameters.AddWithValue("observaciones",observaciones.Text);
 
             //OPEN CON AND EXEC INSERT
             try
@@ -273,8 +277,16 @@ namespace WindowsFormsApp3
                 frm.reportViewer1.LocalReport.DataSources.Add(rs2);
                 frm.reportViewer1.LocalReport.DataSources.Add(rs3);
                 frm.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApp3.Report2.rdlc";
+                this.Hide();
+
+                // show other form
                
                 frm.ShowDialog();
+
+                // close application
+                this.Close();
+                
+                
             }
         }
 
@@ -305,7 +317,7 @@ namespace WindowsFormsApp3
             public Byte[] logo { get; set; }
             public string fecha { get; set; }
             public string serial { get; set; }
-
+            public string observa { get; set; }
         }
 
         public class remisio
@@ -610,6 +622,7 @@ namespace WindowsFormsApp3
             button1.Enabled = false;
             button2.Enabled = false;
             button4.Enabled = true;
+            observaciones.Enabled = false;
             dataGridView1.Rows.Clear();
             textBox1.Text = "1";
 
@@ -664,6 +677,7 @@ namespace WindowsFormsApp3
                 button1.Enabled = true;
                 button2.Enabled = true;
                 button4.Enabled = false;
+                observaciones.Enabled = true;
             }
             else
             {

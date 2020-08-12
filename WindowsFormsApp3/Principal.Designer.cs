@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp3
 {
-    partial class menu
+    partial class Principal
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,7 @@
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pRODUCTOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cONSULTADEREMISIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.puestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +43,8 @@
             this.rEMISIONESToolStripMenuItem,
             this.cLIENTESToolStripMenuItem,
             this.pRODUCTOSToolStripMenuItem,
-            this.cONSULTADEREMISIONESToolStripMenuItem});
+            this.cONSULTADEREMISIONESToolStripMenuItem,
+            this.puestoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -77,14 +79,23 @@
             this.cONSULTADEREMISIONESToolStripMenuItem.Text = "CONSULTA DE REMISIONES";
             this.cONSULTADEREMISIONESToolStripMenuItem.Click += new System.EventHandler(this.cONSULTADEREMISIONESToolStripMenuItem_Click);
             // 
-            // menu
+            // puestoToolStripMenuItem
+            // 
+            this.puestoToolStripMenuItem.Checked = true;
+            this.puestoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.puestoToolStripMenuItem.Name = "puestoToolStripMenuItem";
+            this.puestoToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.puestoToolStripMenuItem.Text = "puesto";
+            this.puestoToolStripMenuItem.Click += new System.EventHandler(this.puestoToolStripMenuItem_Click);
+            // 
+            // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "menu";
+            this.Name = "Principal";
             this.Text = "menu";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -100,5 +111,6 @@
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pRODUCTOSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cONSULTADEREMISIONESToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem puestoToolStripMenuItem;
     }
 }

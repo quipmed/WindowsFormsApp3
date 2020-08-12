@@ -10,33 +10,47 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class menu : Form
+    public partial class Principal : Form
     {
-        public menu()
+        public Principal()
         {
             InitializeComponent();
         }
-        remi remi = new remi();
+     
         private void rEMISIONESToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            remi remi = new remi();
             remi.ShowDialog();
+            remi.Dispose();
         }
-        clientes clientes = new clientes();
+       
         private void cLIENTESToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            clientes clientes = new clientes();
             clientes.ShowDialog();
+            clientes.Dispose();
         }
-        productos productos = new productos();
+        
         private void pRODUCTOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            productos productos = new productos();
             productos.ShowDialog();
-            
+            productos.Dispose();
+
         }
-        consulrta_remi consulrta_Remi = new consulrta_remi();
+     
         private void cONSULTADEREMISIONESToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            consulrta_remi consulrta_Remi = new consulrta_remi();
             consulrta_Remi.ShowDialog();
+            consulrta_Remi.Dispose();
+        }
+
+        private void puestoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            frmContacto puesto = new frmContacto();
+            puesto.ShowDialog();
         }
     }
 }

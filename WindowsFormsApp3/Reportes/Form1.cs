@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class remision_consulcs : Form
+    public partial class Form1 : Form
     {
-        public remision_consulcs()
+        public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+            this.reportViewer1.RefreshReport();
         }
     }
 }

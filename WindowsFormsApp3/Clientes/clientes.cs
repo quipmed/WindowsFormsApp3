@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +15,10 @@ namespace WindowsFormsApp3
     public partial class clientes : Form
     {
 
-        public static string directorio = Application.StartupPath;  // variable del directorio de trabajo
-        public static string archivo = "spacecraftsDB.mdb";  // variable del directorio de trabajo
-        public static string conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + directorio + @"\" + archivo + ";Persist Security Info=false;";
-        readonly OleDbConnection con = new OleDbConnection(conString);
-        OleDbCommand cmd;
-        OleDbDataAdapter adapter;
+        public static string conString = "datasource=162.241.60.245;port=3306;username=quipmedc_rrmedica;password=#Linux2018;database=quipmedc_rrmedica;";
+        readonly MySqlConnection con = new MySqlConnection(conString);
+        MySqlCommand cmd;
+        MySqlDataAdapter adapter;
         readonly DataTable dt = new DataTable();
         
         public clientes()
@@ -28,6 +27,7 @@ namespace WindowsFormsApp3
             //DATAGRIDVIEW PROPERTIES
             dataGridView1.ColumnCount = 4;
             dataGridView1.Columns[0].Name = "ID";
+            dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Name = "NOMBRE";
             dataGridView1.Columns[2].Name = "Direccion";
             dataGridView1.Columns[3].Name = "RFC";
@@ -65,8 +65,8 @@ namespace WindowsFormsApp3
         private void add(string nombre, string direccion, string rfc)
         {
             //SQL STMT
-            const string sql = "INSERT INTO clientes(nombre,direccion,rfc) VALUES(@nombre,@direccion,@rfc)";
-            cmd = new OleDbCommand(sql, con);
+            const string sql = "INSERT INTO tbCliente(nombre,direccion,rfc) VALUES(@nombre,@direccion,@rfc)";
+            cmd = new MySqlCommand(sql, con);
 
             //ADD PARAMS
             cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -135,12 +135,12 @@ namespace WindowsFormsApp3
         {
             dataGridView1.Rows.Clear();
             //SQL STATEMENT
-            String sql = "SELECT * FROM clientes ";
-            cmd = new OleDbCommand(sql, con);
+            String sql = "SELECT * FROM tbCliente ";
+            cmd = new MySqlCommand(sql, con);
             try
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt.Rows)
@@ -162,7 +162,22 @@ namespace WindowsFormsApp3
 
         private void textBox1_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -235,14 +250,14 @@ namespace WindowsFormsApp3
         private void update(int id, string nombre, string direccion, string rfc)
         {
             //SQL STATEMENT
-            string sql = "UPDATE clientes SET nombre='" + nombre + "',direccion='" + direccion + "',rfc='" + rfc + "' WHERE ID=" + id + "";
-            cmd = new OleDbCommand(sql, con);
+            string sql = "UPDATE tbCliente SET nombre='" + nombre + "',direccion='" + direccion + "',rfc='" + rfc + "' WHERE ID=" + id + "";
+            cmd = new MySqlCommand(sql, con);
 
             //OPEN CONNECTION,UPDATE,RETRIEVE DATAGRIDVIEW
             try
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd)
+                adapter = new MySqlDataAdapter(cmd)
                 {
                     UpdateCommand = con.CreateCommand()
                 };
@@ -274,18 +289,29 @@ namespace WindowsFormsApp3
             clearTxts();
         }
 
+        private void clientes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //se modifica el form hijo 
+            if (System.Windows.Forms.Application.OpenForms["frmContacto"] != null)
+            {
+               
+                (System.Windows.Forms.Application.OpenForms["frmContacto"] as frmContacto).combo();
+
+            }
+        }
+
         private void filter()
         {
 
             dataGridView1.Rows.Clear();
             //SQL STATEMENT
 
-            String sql = "SELECT * FROM clientes where nombre like ('%" + textBox1.Text + "%')";
-            cmd = new OleDbCommand(sql, con);
+            String sql = "SELECT * FROM tbCliente where nombre like ('%" + textBox1.Text + "%')";
+            cmd = new MySqlCommand(sql, con);
             try
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt.Rows)
