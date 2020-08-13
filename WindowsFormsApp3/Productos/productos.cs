@@ -427,6 +427,12 @@ namespace WindowsFormsApp3
             }
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Productos.procedencia procedencia = new Productos.procedencia();
+            procedencia.ShowDialog();
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,12 +22,10 @@ namespace WindowsFormsApp3
     public partial class remi : Form
     {
 
-        public static string directorio = Application.StartupPath;  // variable del directorio de trabajo
-        public static string archivo = "spacecraftsDB.mdb";  // variable del directorio de trabajo
-        public static string conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + directorio + @"\" + archivo + ";Persist Security Info=false;";
-        readonly OleDbConnection con = new OleDbConnection(conString);
-        OleDbCommand cmd;
-        OleDbDataAdapter adapter;
+        public static string conString = "datasource=162.241.60.245;port=3306;username=quipmedc_rrmedica;password=#Linux2018;database=quipmedc_rrmedica;";
+        readonly MySqlConnection con = new MySqlConnection(conString);
+        MySqlCommand cmd;
+        MySqlDataAdapter adapter;
         readonly DataTable dt = new DataTable();
         readonly DataTable dt2 = new DataTable();
         readonly DataTable dt3 = new DataTable();
@@ -93,12 +92,12 @@ namespace WindowsFormsApp3
             List<empresa> list3 = new List<empresa>();
             list3.Clear();
             String sql = "SELECT * FROM empresas where  id like ('" + comboBox1.SelectedValue + "')";
-            cmd = new OleDbCommand(sql, con);
+            cmd = new MySqlCommand(sql, con);
             try
 
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt3);
                 //LOOP THROUGH DATATABLE
                 
@@ -162,7 +161,7 @@ namespace WindowsFormsApp3
                 //SQL STMT
                 const string sql = "INSERT INTO remisiones(id_remi,id_producto,cantidad,costo,descripcion,producto)" +
                     " VALUES(@id_remi,@id_producto,@cantidad,@costo,@descripcion,@producto)";
-                cmd = new OleDbCommand(sql, con);
+                cmd = new MySqlCommand(sql, con);
 
                 //ADD PARAMS
                 cmd.Parameters.AddWithValue("@id_remi", id_remi);
@@ -199,10 +198,10 @@ namespace WindowsFormsApp3
             //SQL STMT
             const string sql = "INSERT INTO remi_id(id_cliente,id_empresa,fecha,id_remi,observaciones)" +
                 " VALUES(@id_cliente,@id_empresa,@fecha,@id_remi,@observaciones)";
-            cmd = new OleDbCommand(sql, con);
+            cmd = new MySqlCommand(sql, con);
 
             //ADD PARAMS
-            cmd.Parameters.AddWithValue("@id_cliente", comboBox2.SelectedValue);
+            cmd.Parameters.AddWithValue("@id_cliente", cbCliente.SelectedValue);
             cmd.Parameters.AddWithValue("@id_empresa", comboBox1.SelectedValue);
             cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
             cmd.Parameters.AddWithValue("@id_remi", consecu);
@@ -337,12 +336,12 @@ namespace WindowsFormsApp3
             dt4.Clear();
             //SQL STATEMENTSELECT max(visitas) FROM enlace
             String sql = "SELECT  (max(id_remi)+ 1)  FROM remi_id where id_empresa="+ comboBox1.SelectedValue+" ";
-            cmd = new OleDbCommand(sql, con);
+            cmd = new MySqlCommand(sql, con);
             try
 
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt4);
                 //LOOP THROUGH DATATABLE
                 consecu = dt4.Rows[0].ItemArray[0].ToString();
@@ -359,126 +358,185 @@ namespace WindowsFormsApp3
             }
 
         }
-            private void combo()
+        private void combo()
         {
-         
+
             //SQL STATEMENT
-            String sql = "SELECT id,nombre FROM clientes ";
-            cmd = new OleDbCommand(sql, con);
+            String sql = "SELECT ID,nombre FROM tbCliente ";
+            cmd = new MySqlCommand(sql, con);
             try
             {
 
                 DataSet ds = new DataSet();
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
-                adapter.Fill(ds, "clientes");
+                adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(ds, "tbCliente");
                 //LOOP THROUGH DATATABLE
 
-                comboBox2.DataSource = ds.Tables[0].DefaultView;
+                cbCliente.DataSource = ds.Tables[0].DefaultView;
                 //se especifica el campo de la tabla
-                comboBox2.ValueMember = "id";
+                cbCliente.ValueMember = "ID";
                 //indicamos el valor de los miembros
 
                 //se indica el valor a desplegar en el combobox
-                comboBox2.DisplayMember = "nombre";
+                cbCliente.DisplayMember = "nombre";
 
 
+
+                cbCliente.DataSource = ds.Tables[0].DefaultView;
+
+
+                con.Close();
+                //CLEAR DATATABLE 
+
+                dt.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+           
+
+           
+
+            //SQL STATEMENT marca
+            sql = "SELECT idMarca,nombreMarca FROM tbMarca ";
+            cmd = new MySqlCommand(sql, con);
+            try
+            {
+
+                DataSet ds = new DataSet();
+                con.Open();
+                adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(ds, "tbMarca");
+                //LOOP THROUGH DATATABLE
+                con.Close();
+
+                //se especifica el campo de la tabla
+                cbMarca.ValueMember = "idMarca";
+                //indicamos el valor de los miembros
+
+                //se indica el valor a desplegar en el combobox
+                cbMarca.DisplayMember = "nombreMarca";
+
+
+
+                cbMarca.DataSource = ds.Tables[0].DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
                 
-                comboBox2.DataSource = ds.Tables[0].DefaultView;
+
+            }
+            //SQL STATEMENT equipo
+
+            sql = "SELECT idEquipo,nombreEquipo FROM tbEquipo ";
+                cmd = new MySqlCommand(sql, con);
+                try
+                {
+
+                    DataSet ds = new DataSet();
+                    if (con.State.ToString() != "Open")
+                    {
+                        con.Open();
+                    }
+                    adapter = new MySqlDataAdapter(cmd);
+                    adapter.Fill(ds, "tbEquipo");
+                    //LOOP THROUGH DATATABLE
+                    con.Close();
+
+                    //se especifica el campo de la tabla
+                    cbEquipo.ValueMember = "idEquipo";
+                    //indicamos el valor de los miembros
+
+                    //se indica el valor a desplegar en el combobox
+                    cbEquipo.DisplayMember = "nombreEquipo";
+
+
+
+                    cbEquipo.DataSource = ds.Tables[0].DefaultView;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    con.Close();
+                }
+            /*
+            //SQL STATEMENT contacto
+            sql = "SELECT idContacto,nombreContacto FROM tbContacto where idEmpresa='" + cbCliente.SelectedValue + "'  ";
+            cmd = new MySqlCommand(sql, con);
+            try
+            {
+
+                DataSet ds = new DataSet();
+                con.Open();
+                adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(ds, "tbContacto");
+                //LOOP THROUGH DATATABLE
+                con.Close();
+
+                //se especifica el campo de la tabla
+                cbAtencion.ValueMember = "idContacto";
+                //indicamos el valor de los miembros
+
+                //se indica el valor a desplegar en el combobox
+                cbAtencion.DisplayMember = "nombreContacto";
+
+
+
+                cbAtencion.DataSource = ds.Tables[0].DefaultView;
+
+
+                //CLEAR DATATABLE 
+
+                dt.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+
+            //SQL STATEMENT modelo
+            sql = "SELECT idProducto,modeloProducto FROM tbProducto where idMarca='"+cbMarca.SelectedValue+"' ";
+            cmd = new MySqlCommand(sql, con);
+            try
+            {
+
+                DataSet ds = new DataSet();
+                con.Open();
+                adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(ds, "tbProducto");
+                //LOOP THROUGH DATATABLE
+                con.Close();
+
+                //se especifica el campo de la tabla
+                cbModelo.ValueMember = "idProducto";
+                //indicamos el valor de los miembros
+
+                //se indica el valor a desplegar en el combobox
+                cbModelo.DisplayMember = "modeloProducto";
+
+
+
+                cbModelo.DataSource = ds.Tables[0].DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+            */
+           
             
-
-                con.Close();
-                //CLEAR DATATABLE 
-
-                dt.Rows.Clear();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                con.Close();
-            }
-
-
-            //SQL STATEMENT
-           sql = "SELECT id,nombre FROM productos ";
-            cmd = new OleDbCommand(sql, con);
-            try
-            {
-
-                DataSet ds = new DataSet();
-                con.Open();
-                adapter = new OleDbDataAdapter(cmd);
-                adapter.Fill(ds, "productos");
-                //LOOP THROUGH DATATABLE
-                con.Close();
-         
-                //se especifica el campo de la tabla
-                comboBox3.ValueMember = "id";
-                //indicamos el valor de los miembros
-
-                //se indica el valor a desplegar en el combobox
-                comboBox3.DisplayMember = "nombre";
-
-
-
-                comboBox3.DataSource = ds.Tables[0].DefaultView;
-
-
-               
-                //CLEAR DATATABLE 
-
-                dt.Rows.Clear();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                con.Close();
-            }
-
-            //SQL STATEMENT
-            sql = "SELECT id,nombre FROM empresas ";
-            cmd = new OleDbCommand(sql, con);
-            try
-            {
-
-                DataSet ds = new DataSet();
-                con.Open();
-                adapter = new OleDbDataAdapter(cmd);
-                adapter.Fill(ds, "empresas");
-                //LOOP THROUGH DATATABLE
-                con.Close();
-
-                //se especifica el campo de la tabla
-                comboBox1.ValueMember = "id";
-                //indicamos el valor de los miembros
-
-                //se indica el valor a desplegar en el combobox
-                comboBox1.DisplayMember = "nombre";
-
-
-
-                comboBox1.DataSource = ds.Tables[0].DefaultView;
-
-
-
-                //CLEAR DATATABLE 
-
-                dt.Rows.Clear();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                con.Close();
-            }
-
-
-        }
 
         private void remi_Load(object sender, EventArgs e)
         {
-            comboBox1.SelectedItem = 0;
-            comboBox1.SelectedValue = 0;
-            comboBox1.Text = "RR MEdica";
+            
             combo();
 
         }
@@ -505,16 +563,53 @@ namespace WindowsFormsApp3
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//SQL STATEMENT contacto
+            
+           string sql = "SELECT idContacto,nombreContacto FROM tbContacto where idEmpresa='" + cbCliente.SelectedValue + "'  ";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            try
+            {
+
+                DataSet ds = new DataSet();
+                if (con.State.ToString() != "Open")
+                {
+                    con.Open();
+                }
+                adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(ds, "tbContacto");
+                //LOOP THROUGH DATATABLE
+                con.Close();
+
+                //se especifica el campo de la tabla
+                cbAtencion.ValueMember = "idContacto";
+                //indicamos el valor de los miembros
+
+                //se indica el valor a desplegar en el combobox
+                cbAtencion.DisplayMember = "nombreContacto";
+
+
+
+                cbAtencion.DataSource = ds.Tables[0].DefaultView;
+
+
+                //CLEAR DATATABLE 
+
+                dt.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }/*
             dataGridView2.Rows.Clear();
             //SQL STATEMENT
 
-            String sql = "SELECT * FROM clientes where  id like ('" + comboBox2.SelectedValue + "')";
-            cmd = new OleDbCommand(sql, con);
+            String sql = "SELECT * FROM tbCliente where  id like ('" + cbCliente.SelectedValue + "')";
+            cmd = new MySqlCommand(sql, con);
             try
             {
                 //con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt.Rows)
@@ -533,7 +628,7 @@ namespace WindowsFormsApp3
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
-
+            /*/
         }
         productos productos = new productos();
         private void populate(string id, string nombre, string direccion, string rfc)
@@ -547,13 +642,13 @@ namespace WindowsFormsApp3
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String sql = "SELECT descripcion FROM productos where  id like ('" + comboBox3.SelectedValue + "')";
-            cmd = new OleDbCommand(sql, con);
+            String sql = "SELECT descripcionProducto FROM tbProducto where  idProducto like ('" + cbModelo.SelectedValue + "')";
+            cmd = new MySqlCommand(sql, con);
             try
            
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt2);
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt2.Rows)
@@ -571,14 +666,14 @@ namespace WindowsFormsApp3
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
-
+            
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-            if (comboBox3.SelectedValue != null)
+            if (cbModelo.SelectedValue != null)
             {
                 if (textBox1.Text == "")
                 {
@@ -591,8 +686,8 @@ namespace WindowsFormsApp3
                 int i;
                 i = dataGridView1.Rows.Count;
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[0].Value = comboBox3.SelectedValue;
-                dataGridView1.Rows[i].Cells[1].Value = comboBox3.Text;
+                dataGridView1.Rows[i].Cells[0].Value = cbModelo.SelectedValue;
+                dataGridView1.Rows[i].Cells[1].Value = cbModelo.Text;
                 dataGridView1.Rows[i].Cells[2].Value = textBox2.Text;
                 dataGridView1.Rows[i].Cells[3].Value = textBox1.Text;
                 dataGridView1.Rows[i].Cells[4].Value = textBox3.Text;
@@ -614,14 +709,14 @@ namespace WindowsFormsApp3
         {
             dataGridView1.Enabled = false;
             comboBox1.Enabled = true;
-            comboBox2.Enabled = true;
-            comboBox3.Enabled = false;
+            cbCliente.Enabled = true;
+            cbModelo.Enabled = false;
             textBox1.Enabled = false;
             textBox2.Enabled = false;
             textBox3.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = false;
-            button4.Enabled = true;
+           // button4.Enabled = true;
             observaciones.Enabled = false;
             dataGridView1.Rows.Clear();
             textBox1.Text = "1";
@@ -663,26 +758,84 @@ namespace WindowsFormsApp3
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (comboBox2.SelectedValue != null)
+            if (cbCliente.SelectedValue != null)
             {
                 textBox1.Text = "1";
                 textBox3.Text = "0";
                 dataGridView1.Enabled = true;
                 comboBox1.Enabled = false;
-                comboBox2.Enabled = false;
-                comboBox3.Enabled = true;
+                cbCliente.Enabled = false;
+                cbModelo.Enabled = true;
                 textBox1.Enabled = true;
                 textBox2.Enabled = true;
                 textBox3.Enabled = true;
                 button1.Enabled = true;
                 button2.Enabled = true;
-                button4.Enabled = false;
+             //   button4.Enabled = false;
                 observaciones.Enabled = true;
             }
             else
             {
                 MessageBox.Show("vuelve a seleccionar el cliente");
             }
+        }
+
+        private void cbMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+        void clearTxts()
+        {
+           
+            //Lid.Text = "";
+            Class1.LimpiarControles(this);
+
+        }
+        private void cbEquipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clearTxts();
+            //SQL STATEMENT modelo
+            string sql = "SELECT idProducto,modeloProducto FROM tbProducto where idMarca='" + cbMarca.SelectedValue + "'  and idEquipo='" + cbEquipo.SelectedValue + "'";
+            cmd = new MySqlCommand(sql, con);
+            try
+            {
+
+                DataSet ds = new DataSet();
+                if (con.State.ToString() != "Open")
+                {
+                    con.Open();
+                }
+                adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(ds, "tbProducto");
+                //LOOP THROUGH DATATABLE
+                con.Close();
+
+                //se especifica el campo de la tabla
+                cbModelo.ValueMember = "idProducto";
+                //indicamos el valor de los miembros
+
+                //se indica el valor a desplegar en el combobox
+                cbModelo.DisplayMember = "modeloProducto";
+
+
+
+                cbModelo.DataSource = ds.Tables[0].DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+        }
+
+        private void groupBox10_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

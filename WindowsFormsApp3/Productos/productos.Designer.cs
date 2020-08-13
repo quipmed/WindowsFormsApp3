@@ -61,7 +61,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(490, 100);
+            this.button4.Location = new System.Drawing.Point(490, 62);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 56);
             this.button4.TabIndex = 27;
@@ -72,7 +72,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(490, 79);
+            this.button3.Location = new System.Drawing.Point(490, 64);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 54);
             this.button3.TabIndex = 26;
@@ -177,6 +177,7 @@
             this.button6.TabIndex = 31;
             this.button6.Text = "ADD";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // cbProcedencia
             // 

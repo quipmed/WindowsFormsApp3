@@ -49,7 +49,7 @@ namespace WindowsFormsApp3
         private void puestoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            frmContacto puesto = new frmContacto();
+            Remisiones.remicion puesto = new Remisiones.remicion();
             puesto.ShowDialog();
         }
     }

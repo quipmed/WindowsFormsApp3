@@ -146,11 +146,23 @@
     <Compile Include="Productos\frmMarca.Designer.cs">
       <DependentUpon>frmMarca.cs</DependentUpon>
     </Compile>
+    <Compile Include="Productos\procedencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\procedencia.Designer.cs">
+      <DependentUpon>procedencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Remisiones\consulrta_remi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Remisiones\consulrta_remi.Designer.cs">
       <DependentUpon>consulrta_remi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Remisiones\remicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Remisiones\remicion.Designer.cs">
+      <DependentUpon>remicion.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\Form1.cs">
       <SubType>Form</SubType>
@@ -214,8 +226,14 @@
     <EmbeddedResource Include="Productos\frmMarca.resx">
       <DependentUpon>frmMarca.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Productos\procedencia.resx">
+      <DependentUpon>procedencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Remisiones\consulrta_remi.resx">
       <DependentUpon>consulrta_remi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Remisiones\remicion.resx">
+      <DependentUpon>remicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
