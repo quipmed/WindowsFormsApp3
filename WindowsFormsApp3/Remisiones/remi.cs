@@ -270,17 +270,17 @@ namespace WindowsFormsApp3
                 cliente();
                 empres();
                 guard();
-                Form1 frm = new Form1();
-                frm.reportViewer1.LocalReport.DataSources.Clear();
+                //Form1 frm = new Form1();
+               /* frm.reportViewer1.LocalReport.DataSources.Clear();
                 frm.reportViewer1.LocalReport.DataSources.Add(rs);
                 frm.reportViewer1.LocalReport.DataSources.Add(rs2);
                 frm.reportViewer1.LocalReport.DataSources.Add(rs3);
                 frm.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApp3.Report2.rdlc";
                 this.Hide();
-
+                */
                 // show other form
                
-                frm.ShowDialog();
+             //   frm.ShowDialog();
 
                 // close application
                 this.Close();

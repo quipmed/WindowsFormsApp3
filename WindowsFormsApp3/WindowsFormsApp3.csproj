@@ -164,12 +164,6 @@
     <Compile Include="Remisiones\remicion.Designer.cs">
       <DependentUpon>remicion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reportes\Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,9 +229,6 @@
     <EmbeddedResource Include="Remisiones\remicion.resx">
       <DependentUpon>remicion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,15 +260,13 @@
     <EmbeddedResource Include="Remisiones\remision_consulcs.resx">
       <DependentUpon>remision_consulcs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Report2.rdlc" />
-    <EmbeddedResource Include="Reportes\Report3.rdlc" />
+    <EmbeddedResource Include="Reportes\Report1.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\DataSources\remi.client.datasource" />
-    <None Include="Properties\DataSources\remi.datasource" />
-    <None Include="Properties\DataSources\remi.empresa.datasource" />
     <None Include="Properties\DataSources\remi.remisio.datasource" />
-    <None Include="Properties\DataSources\remision_consulcs.remisio.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp3.Remisiones.remicion+client.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp3.Remisiones.remicion+empresa.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp3.Remisiones.remicion+remisionTb.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

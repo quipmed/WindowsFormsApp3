@@ -12,6 +12,7 @@ namespace WindowsFormsApp3
 {
     public partial class Form2 : Form
     {
+       
         public Form2()
         {
             InitializeComponent();
@@ -20,7 +21,13 @@ namespace WindowsFormsApp3
         private void Form2_Load(object sender, EventArgs e)
         {
 
+           
             this.reportViewer1.RefreshReport();
+        }
+
+        private void reportViewer1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

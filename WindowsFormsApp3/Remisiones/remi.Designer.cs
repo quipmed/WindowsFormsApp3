@@ -42,7 +42,6 @@
             this.cbModelo = new System.Windows.Forms.ComboBox();
             this.cbCliente = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.observaciones = new System.Windows.Forms.TextBox();
             this.cbAtencion = new System.Windows.Forms.ComboBox();
@@ -51,36 +50,37 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gbProducto = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btEquipo = new System.Windows.Forms.Button();
+            this.cbEquipo = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btModelo = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btMarca = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.cbEquipo = new System.Windows.Forms.ComboBox();
-            this.btMarca = new System.Windows.Forms.Button();
-            this.btEquipo = new System.Windows.Forms.Button();
-            this.btModelo = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.gbcliente.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbProducto.SuspendLayout();
-            this.groupBox8.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -235,16 +235,6 @@
             this.comboBox1.Visible = false;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(199, 627);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 40);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "LIMPIAR";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(489, 192);
@@ -333,15 +323,37 @@
             this.gbProducto.TabStop = false;
             this.gbProducto.Text = "Datos del producto";
             // 
-            // groupBox8
+            // groupBox10
             // 
-            this.groupBox8.Controls.Add(this.textBox2);
-            this.groupBox8.Location = new System.Drawing.Point(12, 163);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(461, 100);
-            this.groupBox8.TabIndex = 39;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Descripcion";
+            this.groupBox10.Controls.Add(this.btEquipo);
+            this.groupBox10.Controls.Add(this.cbEquipo);
+            this.groupBox10.Location = new System.Drawing.Point(209, 19);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(193, 81);
+            this.groupBox10.TabIndex = 40;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Equipo";
+            this.groupBox10.Enter += new System.EventHandler(this.groupBox10_Enter);
+            // 
+            // btEquipo
+            // 
+            this.btEquipo.Location = new System.Drawing.Point(75, 46);
+            this.btEquipo.Name = "btEquipo";
+            this.btEquipo.Size = new System.Drawing.Size(39, 23);
+            this.btEquipo.TabIndex = 33;
+            this.btEquipo.Text = "ADD";
+            this.btEquipo.UseVisualStyleBackColor = true;
+            // 
+            // cbEquipo
+            // 
+            this.cbEquipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbEquipo.FormattingEnabled = true;
+            this.cbEquipo.Location = new System.Drawing.Point(6, 19);
+            this.cbEquipo.Name = "cbEquipo";
+            this.cbEquipo.Size = new System.Drawing.Size(177, 21);
+            this.cbEquipo.TabIndex = 9;
+            this.cbEquipo.SelectedIndexChanged += new System.EventHandler(this.cbEquipo_SelectedIndexChanged);
             // 
             // groupBox7
             // 
@@ -362,15 +374,15 @@
             this.textBox3.Text = "0";
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
-            // groupBox6
+            // groupBox8
             // 
-            this.groupBox6.Controls.Add(this.textBox1);
-            this.groupBox6.Location = new System.Drawing.Point(91, 106);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(93, 51);
-            this.groupBox6.TabIndex = 38;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Cantidad";
+            this.groupBox8.Controls.Add(this.textBox2);
+            this.groupBox8.Location = new System.Drawing.Point(12, 163);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(461, 100);
+            this.groupBox8.TabIndex = 39;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Descripcion";
             // 
             // groupBox4
             // 
@@ -384,6 +396,25 @@
             this.groupBox4.Text = "Modelo";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
+            // btModelo
+            // 
+            this.btModelo.Location = new System.Drawing.Point(81, 46);
+            this.btModelo.Name = "btModelo";
+            this.btModelo.Size = new System.Drawing.Size(39, 23);
+            this.btModelo.TabIndex = 33;
+            this.btModelo.Text = "ADD";
+            this.btModelo.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.textBox1);
+            this.groupBox6.Location = new System.Drawing.Point(91, 106);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(93, 51);
+            this.groupBox6.TabIndex = 38;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Cantidad";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btMarca);
@@ -394,6 +425,15 @@
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
+            // 
+            // btMarca
+            // 
+            this.btMarca.Location = new System.Drawing.Point(69, 46);
+            this.btMarca.Name = "btMarca";
+            this.btMarca.Size = new System.Drawing.Size(39, 23);
+            this.btMarca.TabIndex = 32;
+            this.btMarca.Text = "ADD";
+            this.btMarca.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -415,56 +455,6 @@
             this.groupBox9.TabIndex = 28;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Observaciones generales";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.btEquipo);
-            this.groupBox10.Controls.Add(this.cbEquipo);
-            this.groupBox10.Location = new System.Drawing.Point(209, 19);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(193, 81);
-            this.groupBox10.TabIndex = 40;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Equipo";
-            this.groupBox10.Enter += new System.EventHandler(this.groupBox10_Enter);
-            // 
-            // cbEquipo
-            // 
-            this.cbEquipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbEquipo.FormattingEnabled = true;
-            this.cbEquipo.Location = new System.Drawing.Point(6, 19);
-            this.cbEquipo.Name = "cbEquipo";
-            this.cbEquipo.Size = new System.Drawing.Size(177, 21);
-            this.cbEquipo.TabIndex = 9;
-            this.cbEquipo.SelectedIndexChanged += new System.EventHandler(this.cbEquipo_SelectedIndexChanged);
-            // 
-            // btMarca
-            // 
-            this.btMarca.Location = new System.Drawing.Point(69, 46);
-            this.btMarca.Name = "btMarca";
-            this.btMarca.Size = new System.Drawing.Size(39, 23);
-            this.btMarca.TabIndex = 32;
-            this.btMarca.Text = "ADD";
-            this.btMarca.UseVisualStyleBackColor = true;
-            // 
-            // btEquipo
-            // 
-            this.btEquipo.Location = new System.Drawing.Point(75, 46);
-            this.btEquipo.Name = "btEquipo";
-            this.btEquipo.Size = new System.Drawing.Size(39, 23);
-            this.btEquipo.TabIndex = 33;
-            this.btEquipo.Text = "ADD";
-            this.btEquipo.UseVisualStyleBackColor = true;
-            // 
-            // btModelo
-            // 
-            this.btModelo.Location = new System.Drawing.Point(81, 46);
-            this.btModelo.Name = "btModelo";
-            this.btModelo.Size = new System.Drawing.Size(39, 23);
-            this.btModelo.TabIndex = 33;
-            this.btModelo.Text = "ADD";
-            this.btModelo.UseVisualStyleBackColor = true;
             // 
             // pictureBox3
             // 
@@ -498,11 +488,21 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(199, 627);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(110, 40);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "LIMPIAR";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // remi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 673);
+            this.ClientSize = new System.Drawing.Size(1165, 673);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.gbProducto);
             this.Controls.Add(this.gbcliente);
@@ -526,18 +526,18 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.gbProducto.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -565,7 +565,6 @@
         private System.Windows.Forms.ComboBox cbModelo;
         private System.Windows.Forms.ComboBox cbCliente;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox observaciones;
         private System.Windows.Forms.ComboBox cbAtencion;
@@ -587,5 +586,6 @@
         private System.Windows.Forms.Button btEquipo;
         private System.Windows.Forms.Button btModelo;
         private System.Windows.Forms.Button btMarca;
+        private System.Windows.Forms.Button button3;
     }
 }
