@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,22 +15,21 @@ namespace WindowsFormsApp3
     public partial class consulrta_remi : Form
     {
         public string caden = "";
-        public static string directorio = Application.StartupPath;  // variable del directorio de trabajo
-        public static string archivo = "spacecraftsDB.mdb";  // variable del directorio de trabajo
-        public static string conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + directorio + @"\" + archivo + ";Persist Security Info=false;";
-        readonly OleDbConnection con = new OleDbConnection(conString);
-        OleDbCommand cmd;
-        OleDbDataAdapter adapter;
+        public static string conString = "datasource=162.241.60.245;port=3306;username=quipmedc_rrmedica;password=#Linux2018;database=quipmedc_rrmedica;";
+        readonly MySqlConnection con = new MySqlConnection(conString);
+        MySqlCommand cmd;
+        MySqlDataAdapter adapter;
         readonly DataTable dt = new DataTable();
         public consulrta_remi()
         {
             InitializeComponent();
             //DATAGRIDVIEW PROPERTIES
             dataGridView1.ColumnCount = 4;
-            dataGridView1.Columns[0].Name = "REMISION";
-            dataGridView1.Columns[1].Name = "NOMBRE";
-            dataGridView1.Columns[2].Name = "EMPRESA";
-            dataGridView1.Columns[3].Name = "FECHA";
+            dataGridView1.Columns[0].Name = "Folio";
+            dataGridView1.Columns[1].Name = "Empresa";
+            dataGridView1.Columns[2].Name = "FECHA";
+            dataGridView1.Columns[3].Name = "id";
+            dataGridView1.Columns[3].Visible = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             //SELECTION MODE
 
@@ -42,11 +42,7 @@ namespace WindowsFormsApp3
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
         }
-        private void imprimir()
-
-        {
-
-        }
+       
         private void populate(string id, string nombre, string empresa, string fecha)
         {
             dataGridView1.Rows.Add(id, nombre, empresa, fecha);
@@ -58,44 +54,25 @@ namespace WindowsFormsApp3
             retrieve2();
         }
 
-        private void checks()
-        {
-            caden = "";
-            // (remi_id.id_empresa=2   OR remi_id.id_empresa=1 )
-            if (checkBox1.Checked == true && checkBox2.Checked == true)
-            {
-
-                caden = "and (remi_id.id_empresa=2   OR remi_id.id_empresa=1 )";
-            }
-            if (checkBox1.Checked == true && checkBox2.Checked == false)
-            {
-
-                caden = "and remi_id.id_empresa=2 ";
-            }
-            if (checkBox1.Checked == false && checkBox2.Checked == true)
-            {
-
-                caden = "and remi_id.id_empresa=1 ";
-            }
-        }
         
         private void retrieve2()
         {
-            checks();
+          
             dataGridView1.Rows.Clear();
             //SQL STATEMENT
-            string valor1 = dateTimePicker1.Value.ToString("MM/dd/yyyy");//se invierten los rangos de fecha para poder hacer consulta por acces
+            string valor1 = dateTimePicker1.Value.ToString("yyy-MM-dd");//se invierten los rangos de fecha para poder hacer consulta por acces
 
-            string valor2 = dateTimePicker2.Value.ToString("MM/dd/yyyy");
+            string valor2 = dateTimePicker2.Value.ToString("yyy-MM-dd");
             string valor3 = textBox1.Text;
-            String sql = "SELECT remi_id.id_remi, clientes.nombre, empresas.nombre, remi_id.fecha FROM(remi_id INNER JOIN clientes ON remi_id.id_cliente = clientes.Id) INNER JOIN empresas ON remi_id.id_empresa = empresas.Id  where((fecha) >= #" + valor1 + "#  AND (fecha) <= #" + valor2 + "#)AND  clientes.nombre LIKE ('%" + valor3 + "%') " + caden + "order by fecha desc";
+            
+            String sql = "SELECT tbRemi.folioRemicion, tbCliente.nombre, tbRemi.fecha,tbRemi.remiId FROM(tbRemi INNER JOIN tbCliente ON tbRemi.idCliente = tbCliente.ID) where((fecha) >= '" + valor1 + "' AND(fecha) <= '" + valor2 + "')AND tbCliente.nombre LIKE('%"+textBox1.Text+"%') order by fecha desc";
 
 
-            cmd = new OleDbCommand(sql, con);
+            cmd = new MySqlCommand(sql, con);
             try
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt.Rows)
@@ -121,11 +98,11 @@ namespace WindowsFormsApp3
             string valor1 = dateTimePicker1.Value.ToShortDateString();
             string valor2 = dateTimePicker2.Value.ToShortDateString();
             String sql = textBox1.Text;
-            cmd = new OleDbCommand(sql, con);
+            cmd = new MySqlCommand(sql, con);
             try
             {
                 con.Open();
-                adapter = new OleDbDataAdapter(cmd);
+                adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt.Rows)
@@ -157,7 +134,34 @@ namespace WindowsFormsApp3
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            imprimir();
+           
+
+            try
+            {
+                int selectedIndex = dataGridView1.SelectedRows[0].Index;
+                if (selectedIndex != -1)
+                {
+                    if (dataGridView1.SelectedRows[0].Cells[0].Value != null)
+                    {
+                        string folio = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                        string Cliente = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                        string empresa = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+
+
+                        remision_Consulcs.FOLIO.Text = folio;
+
+
+                    }
+
+                }
+                remision_Consulcs.ShowDialog();
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
+            }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -178,33 +182,6 @@ namespace WindowsFormsApp3
         remision_consulcs remision_Consulcs = new remision_consulcs();
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                int selectedIndex = dataGridView1.SelectedRows[0].Index;
-                if (selectedIndex != -1)
-                {
-                    if (dataGridView1.SelectedRows[0].Cells[0].Value != null)
-                    {
-                        string folio = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                        string Cliente = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                        string empresa = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-
-
-                        remision_Consulcs.FOLIO.Text=folio;
-                        remision_Consulcs.cliente.Text = Cliente;
-                        remision_Consulcs.empresa.Text = empresa;
-
-                    }
-
-                }
-                remision_Consulcs.ShowDialog();
-
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-
-            }
-
         }
     }
 }

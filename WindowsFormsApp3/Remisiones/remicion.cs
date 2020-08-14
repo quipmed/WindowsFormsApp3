@@ -202,7 +202,7 @@ namespace WindowsFormsApp3.Remisiones
             }
         }
         private void productoCb()
-        {
+        {//llenar textbox
             String sql = "SELECT idProducto,descripcionProducto FROM tbProducto where  idProducto like ('" + cbModelo.SelectedValue + "')";
             cmd = new MySqlCommand(sql, con);
             try
@@ -594,12 +594,7 @@ namespace WindowsFormsApp3.Remisiones
                 try
                 {
                     con.Open();
-                    if (cmd.ExecuteNonQuery() > 0)
-                    {
-
-                        MessageBox.Show(@"Successfully Inserted");
-
-                    }
+                    
                     con.Close();
 
                 }
@@ -630,12 +625,7 @@ namespace WindowsFormsApp3.Remisiones
             try
             {
                 con.Open();
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-
-                    MessageBox.Show(@"Successfully Inserted");
-
-                }
+                
                 con.Close();
 
             }
