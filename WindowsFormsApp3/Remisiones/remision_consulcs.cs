@@ -17,7 +17,8 @@ namespace WindowsFormsApp3
 {
     public partial class remision_consulcs : Form
     {
-        public string empresaControl = "2";
+        string selectorDeEmpresa;
+        public string empresaControl ;
         public static string conString = "datasource=162.241.60.245;port=3306;username=quipmedc_rrmedica;password=#Linux2018;database=quipmedc_rrmedica;";
         readonly MySqlConnection con = new MySqlConnection(conString);
         MySqlCommand cmd;
@@ -26,8 +27,9 @@ namespace WindowsFormsApp3
         readonly DataTable dt2 = new DataTable();
         readonly DataTable dt3 = new DataTable();
         readonly DataTable dt1 = new DataTable();
-        public remision_consulcs()
+        public remision_consulcs(string selemp)
         {
+            selectorDeEmpresa = selemp;
             InitializeComponent();
             //DATAGRIDVIEW PROPERTIES
 
@@ -57,7 +59,15 @@ namespace WindowsFormsApp3
         {
             dataGridView1.Rows.Clear();
             //SQL STATEMENT
-            String sql = "SELECT producto,marca,modelo,descripcion,cantidad,costo FROM tbRemiciones where idRemi=" + FOLIO.Text + " ";
+            string sql = "";
+            if (selectorDeEmpresa == "rr")
+            {
+                sql = "SELECT producto,marca,modelo,descripcion,cantidad,costo FROM tbRemiciones where idRemi=" + FOLIO.Text + " ";
+            }
+            else
+            {
+                sql = "SELECT producto,marca,modelo,descripcion,cantidad,costo FROM tbRemicionesMill where idRemi=" + FOLIO.Text + " ";
+            }
             cmd = new MySqlCommand(sql, con);
             try
             {
@@ -99,7 +109,15 @@ namespace WindowsFormsApp3
         {
             dataGridView1.Rows.Clear();
             //SQL STATEMENT
-            String sql = "SELECT producto,marca,modelo,descripcion,cantidad,costo FROM tbRemiciones where idRemi=" + FOLIO.Text + " ";
+            string sql = "";
+            if (selectorDeEmpresa == "rr")
+            {
+                sql = "SELECT producto,marca,modelo,descripcion,cantidad,costo FROM tbRemiciones where idRemi=" + FOLIO.Text + " ";
+            }
+            else
+            {
+                sql = "SELECT producto,marca,modelo,descripcion,cantidad,costo FROM tbRemicionesMill where idRemi=" + FOLIO.Text + " ";
+            }
             cmd = new MySqlCommand(sql, con);
             try
             {
@@ -126,7 +144,16 @@ namespace WindowsFormsApp3
         }
         private void llenarTxt()
         {
-            String sql = "SELECT DATE_FORMAT(tbRemi.fecha, '%Y-%m-%d'),tbRemi.observaciones,tbCliente.nombre,tbCliente.direccion,tbCliente.rfc FROM tbRemi INNER JOIN tbCliente on tbRemi.idCliente= tbCliente.ID WHERE tbRemi.folioRemicion=" + FOLIO.Text + "";
+            string sql = "";
+            if (selectorDeEmpresa == "rr")
+            {
+                 sql = "SELECT DATE_FORMAT(tbRemi.fecha, '%Y-%m-%d'),tbRemi.observaciones,tbCliente.nombre,tbCliente.direccion,tbCliente.rfc FROM tbRemi INNER JOIN tbCliente on tbRemi.idCliente= tbCliente.ID WHERE tbRemi.folioRemicion=" + FOLIO.Text + "";
+            }
+            else
+            {
+                sql = "SELECT DATE_FORMAT(tbRemiMill.fecha, '%Y-%m-%d'),tbRemiMill.observaciones,tbCliente.nombre,tbCliente.direccion,tbCliente.rfc FROM tbRemiMill INNER JOIN tbCliente on tbRemiMill.idCliente= tbCliente.ID WHERE tbRemiMill.folioRemicion=" + FOLIO.Text + "";
+
+            }
             cmd = new MySqlCommand(sql, con);
             try
 
@@ -200,8 +227,16 @@ namespace WindowsFormsApp3
         private void remision_consulcs_Load(object sender, EventArgs e)
         {
 
+            if (selectorDeEmpresa == "rr")
+            {
+                empresaControl = "2";
+            }
+            else
+            {
+                empresaControl = "1";
+            }
         }
-        ReportDataSource rs = new ReportDataSource();
+            ReportDataSource rs = new ReportDataSource();
         private byte[] GetBytes(Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
@@ -315,7 +350,7 @@ namespace WindowsFormsApp3
                 {
 
 
-                    pris = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                    pris = dataGridView1.Rows[i].Cells[5].Value.ToString();
                     pris.Trim();
                     if (pris == "")
                     {
@@ -323,11 +358,11 @@ namespace WindowsFormsApp3
                     }
                     remisionTb remisio = new remisionTb
                     {
-                        producto = dataGridView1.Rows[i].Cells[1].Value.ToString(),
-                        marca = dataGridView1.Rows[i].Cells[2].Value.ToString(),
-                        modelo = dataGridView1.Rows[i].Cells[3].Value.ToString(),
-                        descripcion = dataGridView1.Rows[i].Cells[4].Value.ToString(),
-                        cantidad = dataGridView1.Rows[i].Cells[5].Value.ToString(),
+                        producto = dataGridView1.Rows[i].Cells[0].Value.ToString(),
+                        marca = dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                        modelo = dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                        descripcion = dataGridView1.Rows[i].Cells[3].Value.ToString(),
+                        cantidad = dataGridView1.Rows[i].Cells[4].Value.ToString(),
 
 
                         precio = pris,
@@ -354,6 +389,82 @@ namespace WindowsFormsApp3
 
 
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            txtCancelacion.Visible = true;
+            if (txtCancelacion.Visible ==true)
+            {
+                if (txtCancelacion.Text.Trim() == "")
+                {
+                    MessageBox.Show("Captura el motivo de cancelacion", "Falta agregar motivo de cancelacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Seguro que quieres cancelar esta remision", "Cancelar remision", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string sql = "";
+                        if (selectorDeEmpresa == "rr")
+                        {
+                            sql = "UPDATE tbRemi SET cancelada=1,motivo='" + txtCancelacion.Text + "' WHERE folioRemicion=" + FOLIO.Text + "";
+                          }
+                        else
+                        {
+                            sql = "UPDATE tbRemiMill SET cancelada=1,motivo='" + txtCancelacion.Text + "' WHERE folioRemicion=" + FOLIO.Text + "";
+                        }
+                        //SQL STATEMENT
+                         cmd = new MySqlCommand(sql, con);
+
+                        //OPEN CONNECTION,UPDATE,RETRIEVE DATAGRIDVIEW
+                        try
+                        {
+                            con.Open();
+                            adapter = new MySqlDataAdapter(cmd)
+                            {
+                                UpdateCommand = con.CreateCommand()
+                            };
+                            adapter.UpdateCommand.CommandText = sql;
+                            if (adapter.UpdateCommand.ExecuteNonQuery() > 0)
+                            {
+                                
+                                MessageBox.Show(@"Successfully Updated");
+                            }
+                            con.Close();
+
+                            //REFRESH DATA
+                            retrieve();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            con.Close();
+                        }
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //do something else
+                    }
+                }
+            }
+        }
+
+        private void txtCancelacion_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

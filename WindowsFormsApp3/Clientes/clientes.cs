@@ -80,7 +80,7 @@ namespace WindowsFormsApp3
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     clearTxts();
-                    MessageBox.Show(@"Successfully Inserted");
+                    
                   
                 }
                 con.Close();
@@ -265,7 +265,7 @@ namespace WindowsFormsApp3
                 if (adapter.UpdateCommand.ExecuteNonQuery() > 0)
                 {
                     clearTxts();
-                    MessageBox.Show(@"Successfully Updated");
+                    
                 }
                 con.Close();
 
@@ -298,7 +298,15 @@ namespace WindowsFormsApp3
                 (System.Windows.Forms.Application.OpenForms["frmContacto"] as frmContacto).combo();
 
             }
-        }
+            //se modifica el form hijo 
+            if (System.Windows.Forms.Application.OpenForms["remicion"] != null)
+            {
+
+                (System.Windows.Forms.Application.OpenForms["remicion"] as Remisiones.remicion).combo();
+
+            }
+        
+    }
 
         private void filter()
         {

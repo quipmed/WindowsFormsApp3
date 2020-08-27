@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -64,6 +64,9 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.txtCancelacion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -80,11 +83,12 @@
             this.groupBox7.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(232, 394);
+            this.button1.Location = new System.Drawing.Point(238, 382);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 40);
             this.button1.TabIndex = 28;
@@ -204,6 +208,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(630, 150);
             this.dataGridView1.TabIndex = 53;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // producto
             // 
@@ -242,9 +247,9 @@
             // cantidad
             // 
             this.cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.cantidad.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.cantidad.DefaultCellStyle = dataGridViewCellStyle7;
             this.cantidad.FillWeight = 112.6674F;
             this.cantidad.HeaderText = "Cantidad";
             this.cantidad.Name = "cantidad";
@@ -254,9 +259,9 @@
             // pUnitario
             // 
             this.pUnitario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.pUnitario.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.pUnitario.DefaultCellStyle = dataGridViewCellStyle8;
             this.pUnitario.HeaderText = "P. Unitario";
             this.pUnitario.Name = "pUnitario";
             this.pUnitario.ReadOnly = true;
@@ -265,9 +270,9 @@
             // subTotal
             // 
             this.subTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.subTotal.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.subTotal.DefaultCellStyle = dataGridViewCellStyle9;
             this.subTotal.HeaderText = "Sub total";
             this.subTotal.Name = "subTotal";
             this.subTotal.ReadOnly = true;
@@ -286,6 +291,7 @@
             this.groupBox1.TabIndex = 54;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del cliente";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox8
             // 
@@ -432,11 +438,43 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Total general";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(525, 455);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 40);
+            this.button2.TabIndex = 63;
+            this.button2.Text = "cancelar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.txtCancelacion);
+            this.groupBox11.Location = new System.Drawing.Point(12, 428);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(511, 77);
+            this.groupBox11.TabIndex = 64;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Motivos de cancelacion";
+            // 
+            // txtCancelacion
+            // 
+            this.txtCancelacion.BackColor = System.Drawing.Color.White;
+            this.txtCancelacion.Location = new System.Drawing.Point(6, 19);
+            this.txtCancelacion.Multiline = true;
+            this.txtCancelacion.Name = "txtCancelacion";
+            this.txtCancelacion.Size = new System.Drawing.Size(499, 43);
+            this.txtCancelacion.TabIndex = 51;
+            this.txtCancelacion.TextChanged += new System.EventHandler(this.txtCancelacion_TextChanged);
+            // 
             // remision_consulcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 459);
+            this.ClientSize = new System.Drawing.Size(657, 516);
+            this.Controls.Add(this.groupBox11);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox7);
@@ -451,7 +489,8 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "remision_consulcs";
-            this.Text = "remision_consulcs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "remisiones";
             this.Load += new System.EventHandler(this.remision_consulcs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -478,6 +517,8 @@
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -516,5 +557,8 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox11;
+        public System.Windows.Forms.TextBox txtCancelacion;
     }
 }

@@ -179,7 +179,7 @@ namespace WindowsFormsApp3.Productos
             Lid.Text = "";
             Class1.LimpiarControles(this);
         }
-       
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -235,7 +235,7 @@ namespace WindowsFormsApp3.Productos
             }
             else
             {
-                
+
                 add(txtDepartamento.Text);
             }
             retrieve();
@@ -249,6 +249,11 @@ namespace WindowsFormsApp3.Productos
 
                 (System.Windows.Forms.Application.OpenForms["productos"] as productos).combo();
 
+            }
+            if (System.Windows.Forms.Application.OpenForms["remicion"] != null)
+            {
+
+                (System.Windows.Forms.Application.OpenForms["remicion"] as Remisiones.remicion).combo2();
             }
         }
     }

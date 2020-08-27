@@ -18,7 +18,7 @@ namespace WindowsFormsApp3.Remisiones
 {
     public partial class remicion : Form
     {
-        public string empresaControl = "2";
+        
         public static string conString = "datasource=162.241.60.245;port=3306;username=quipmedc_rrmedica;password=#Linux2018;database=quipmedc_rrmedica;";
         readonly MySqlConnection con = new MySqlConnection(conString);
         MySqlCommand cmd;
@@ -27,17 +27,25 @@ namespace WindowsFormsApp3.Remisiones
         readonly DataTable dt2 = new DataTable();
         readonly DataTable dt3 = new DataTable();
         public string consecu;
-        public remicion()
+        public string selectorDeEmpresa;
+        public remicion ( bool sde)
         {
-            InitializeComponent();
+           
+            if (sde== true)
+            {
+                selectorDeEmpresa = "mill";
+            }
+            else
+            {
+                selectorDeEmpresa = "rr";
+            }
+
+        InitializeComponent();
             //DATAGRIDVIEW PROPERTIES
-            dataGridView2.ColumnCount = 5;
+            dataGridView2.ColumnCount = 3;
             dataGridView2.Columns[0].Name = "nombre";
             dataGridView2.Columns[1].Name = "direccion";
             dataGridView2.Columns[2].Name = "rfc";
-            dataGridView2.Columns[3].Name = "contacto";//SELECTION MODE
-
-            dataGridView2.Columns[4].Name = "puesto";//SELECTION MODE
 
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.MultiSelect = false;
@@ -54,7 +62,16 @@ namespace WindowsFormsApp3.Remisiones
         {
             dt4.Clear();
             //SQL STATEMENTSELECT max(visitas) FROM enlace
-            String sql = "SELECT  (max(folioRemicion)+ 1)  FROM tbRemi  ";
+            string sql = "";
+            if ( selectorDeEmpresa== "rr")
+            {
+           sql = "SELECT  (max(folioRemicion)+ 1)  FROM tbRemi  ";
+            }
+            else
+            {
+                sql = "SELECT  (max(folioRemicion)+ 1)  FROM tbRemiMill  ";
+            }
+        
             cmd = new MySqlCommand(sql, con);
             try
 
@@ -83,7 +100,7 @@ namespace WindowsFormsApp3.Remisiones
         }
         private void atencionCb()
         {
-
+            /*
 
             //SQL STATEMENT contacto
 
@@ -124,8 +141,19 @@ namespace WindowsFormsApp3.Remisiones
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
-
+            /*/
         }
+        public void combo2()
+        { 
+             marcaCb();
+                modeloCb();
+       
+                productoCb();
+        
+             
+
+    
+}
         private void modeloCb()
         {
             cbModelo.ResetText();
@@ -162,7 +190,7 @@ namespace WindowsFormsApp3.Remisiones
                 con.Close();
             }
         }
-        private void combo()
+        public void combo()
         {
 
             //SQL STATEMENT
@@ -362,6 +390,17 @@ namespace WindowsFormsApp3.Remisiones
                 dataGridView1.Rows[i].Cells[5].Value = textBox1.Text;
                 dataGridView1.Rows[i].Cells[6].Value = textBox3.Text;
                 dataGridView1.Rows[i].Cells[7].Value = (( Convert.ToDouble( textBox1.Text)) * (Convert.ToDouble(textBox3.Text))).ToString();
+                double sumTotal = 0;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+
+                    sumTotal += Convert.ToDouble(row.Cells[7].Value);
+                }
+
+                granTotal.Text = sumTotal.ToString();//Aqui en cada iteración del for deberia ser el textbox correspondiente
+                textBox5.Text = (sumTotal * .16).ToString();
+                textBox4.Text = (sumTotal * 1.16).ToString();
+
 
             }
 
@@ -390,8 +429,6 @@ namespace WindowsFormsApp3.Remisiones
             public string nombre { get; set; }
             public string rfc { get; set; }
             public string direccion { get; set; }
-            public string contacto { get; set; }
-            public string puesto { get; set; }
 
 
         }
@@ -434,7 +471,17 @@ namespace WindowsFormsApp3.Remisiones
 
             List<empresa> list3 = new List<empresa>();
             list3.Clear();
-            String sql = "SELECT * FROM tbEmpresas where  id like ('"+ empresaControl + "')";
+            string emp;
+            if (selectorDeEmpresa=="rr")
+            {
+                emp = "2";
+            }
+            else
+            {
+                emp = "1";
+            }
+            String sql = "SELECT * FROM tbEmpresas where  id like ('"+ emp + "')";
+          
             cmd = new MySqlCommand(sql, con);
             try
 
@@ -455,14 +502,14 @@ namespace WindowsFormsApp3.Remisiones
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
-            if (empresaControl == "1")
+            if ( selectorDeEmpresa== "rr")
             {
-                pictureBox1.Image = pictureBox2.Image;
+                pictureBox1.Image = pictureBox3.Image;
 
             }
             else
             {
-                pictureBox1.Image = pictureBox3.Image;
+                pictureBox1.Image = pictureBox2.Image;
             }
             consecutivo();
             string ob = observaciones.Text;
@@ -576,9 +623,17 @@ namespace WindowsFormsApp3.Remisiones
                 cantidad = dataGridView1[5, row.Index].Value.ToString();
                 costo = dataGridView1[6, row.Index].Value.ToString();
                 //SQL STMT
-                const string sql = "INSERT INTO tbRemiciones(idRemi, producto,marca,modelo,descripcion, cantidad, costo,idProducto)" +
-                    " VALUES(@idRemi, @producto,@marca,@modelo,@descripcion, @cantidad, @costo,@idProducto)";
-                cmd = new MySqlCommand(sql, con);
+                 string sql="";
+                if ( selectorDeEmpresa== "rr")
+                {
+                    sql = "INSERT INTO tbRemiciones(idRemi, producto,marca,modelo,descripcion, cantidad, costo,idProducto)   VALUES(@idRemi, @producto,@marca,@modelo,@descripcion, @cantidad, @costo,@idProducto)";
+
+                }
+                else
+                {
+                    sql = "INSERT INTO tbRemicionesMill(idRemi, producto,marca,modelo,descripcion, cantidad, costo,idProducto)   VALUES(@idRemi, @producto,@marca,@modelo,@descripcion, @cantidad, @costo,@idProducto)";
+                }
+                    cmd = new MySqlCommand(sql, con);
 
                 //ADD PARAMS
                 cmd.Parameters.AddWithValue("@idRemi", idRemi);
@@ -594,7 +649,12 @@ namespace WindowsFormsApp3.Remisiones
                 try
                 {
                     con.Open();
-                    
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+
+                       
+
+                    }
                     con.Close();
 
                 }
@@ -611,12 +671,23 @@ namespace WindowsFormsApp3.Remisiones
         {
             consecutivo();
             //SQL STMT
-            const string sql = "INSERT INTO tbRemi(idCliente,fecha,folioRemicion,observaciones)" +
-                " VALUES(@idCliente,@fecha,@folioRemicion,@observaciones)";
+            string sql = "";
+            if ( selectorDeEmpresa== "rr")
+            { 
+              sql = "INSERT INTO tbRemi(idCliente,fecha,folioRemicion,observaciones)" +
+                 " VALUES(@idCliente,@fecha,@folioRemicion,@observaciones)";
+
+            }
+            else
+            {
+                sql = "INSERT INTO tbRemiMill(idCliente,fecha,folioRemicion,observaciones)" +
+                 " VALUES(@idCliente,@fecha,@folioRemicion,@observaciones)";
+            }
+
             cmd = new MySqlCommand(sql, con);
 
             //ADD PARAMS
-            cmd.Parameters.AddWithValue("@idCliente", cbAtencion.SelectedValue);
+            cmd.Parameters.AddWithValue("@idCliente", cbCliente.SelectedValue);
             cmd.Parameters.AddWithValue("@fecha", DateTime.Now);
             cmd.Parameters.AddWithValue("@folioRemicion", consecu);
             cmd.Parameters.AddWithValue("@observaciones", observaciones.Text);
@@ -625,7 +696,12 @@ namespace WindowsFormsApp3.Remisiones
             try
             {
                 con.Open();
-                
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+
+                   
+
+                }
                 con.Close();
 
             }
@@ -642,20 +718,17 @@ namespace WindowsFormsApp3.Remisiones
  List<client> list2 = new List<client>();
             list2.Clear();
 
-            for (int i = 0; i <= dataGridView2.Rows.Count - 1; i++)
-            {
-                
+               
                 client remisio2 = new client
                 {
-                    nombre = dataGridView2.Rows[i].Cells[0].Value.ToString(),
-                    direccion = dataGridView2.Rows[i].Cells[1].Value.ToString(),
-                    rfc = dataGridView2.Rows[i].Cells[2].Value.ToString(),
-                    contacto = dataGridView2.Rows[i].Cells[3].Value.ToString(),
-                    puesto = dataGridView2.Rows[i].Cells[4].Value.ToString(),
+                    nombre = dataGridView2.Rows[0].Cells[0].Value.ToString(),
+                    direccion = dataGridView2.Rows[0].Cells[1].Value.ToString(),
+                    rfc = dataGridView2.Rows[0].Cells[2].Value.ToString(),
+                   
 
                 };
                 list2.Add(remisio2);
-            }
+            
             rs2.Name = "DataSet2";
             rs2.Value = list2;
         }
@@ -667,15 +740,60 @@ namespace WindowsFormsApp3.Remisiones
             }
         }                            //empresa            direccion       rfc                 nombre contacto         //nombre puesto
 
-        private void populate(string empresa, string direccion, string rfc, string contacto,string puesto)
+        private void btEquipo_Click(object sender, EventArgs e)
         {
-            dataGridView2.Rows.Add(empresa, direccion, rfc, contacto,puesto);
+            clientes clientes = new clientes();
+            clientes.ShowDialog();
+        }
+
+        private void btMarca_Click(object sender, EventArgs e)
+        {
+            Productos.frmMarca marca = new Productos.frmMarca();
+            marca.ShowDialog();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Productos.frmEquipo equipo = new Productos.frmEquipo();
+            equipo.ShowDialog();
+        }
+
+        private void btModelo_Click(object sender, EventArgs e)
+        {
+            productos productos = new productos();
+            productos.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            clearTxts();
+        }
+        private void clearTxts()
+        {
+            textBox1.Text = "1";
+            textBox3.Text = "0";
+            gbProducto.Enabled = false;
+            gbcliente.Enabled = true;
+            // txtModelo.Text = "";
+            //txtDescripcion.Text = "";
+            Class1.LimpiarControles(this);
+            //  cliente.Enabled = true;
+            // txtDescripcion.Enabled = true;
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            // Lid.Enabled = true;
+            // button1.Visible = true;
+        }
+            private void populate(string empresa, string direccion, string rfc)
+        {
+            dataGridView2.Rows.Add(empresa, direccion, rfc);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (cbAtencion.Items.Count == 0)
+            if (cbCliente.Items.Count == 0)
             {
-                MessageBox.Show("Captura un contacto porfavor", "Falta agregar un contacto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Captura un cliente porfavor", "Falta agregar un cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
         }
             else
@@ -691,9 +809,7 @@ namespace WindowsFormsApp3.Remisiones
             dataGridView2.Rows.Clear();
             //SQL STATEMENT
 
-            String sql = "select tbCliente.nombre,tbCliente.direccion,tbCliente.rfc,tbContacto.nombreContacto,tbPuesto.nombrePuesto " +
-                    "from tbCliente INNER JOIN tbContacto on tbCliente.ID=tbContacto.idEmpresa INNER JOIN tbPuesto on tbPuesto.idPuesto=tbContacto.idDepartamento " +
-                    "where  tbContacto.idContacto like ('" + cbAtencion.SelectedValue + "')";
+            String sql = "select tbCliente.nombre,tbCliente.direccion,tbCliente.rfc from tbCliente where tbCliente.ID = " + cbCliente.SelectedValue + "";
             cmd = new MySqlCommand(sql, con);
             try
             {
@@ -703,7 +819,7 @@ namespace WindowsFormsApp3.Remisiones
                 //LOOP THROUGH DATATABLE
                 foreach (DataRow row in dt.Rows)
                 {              //empresa            direccion       rfc                 nombre contacto         //nombre puesto
-                    populate(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                    populate(row[0].ToString(), row[1].ToString(), row[2].ToString());
                 }
 
 

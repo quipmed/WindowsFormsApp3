@@ -67,7 +67,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(375, 50);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 74);
+            this.button1.Size = new System.Drawing.Size(86, 46);
             this.button1.TabIndex = 6;
             this.button1.Text = "AGREGAR NUEVO CLIENTE";
             this.button1.UseVisualStyleBackColor = true;
@@ -81,6 +81,7 @@
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(27, 211);
@@ -136,7 +137,7 @@
             // 
             this.button3.Location = new System.Drawing.Point(375, 50);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(131, 74);
+            this.button3.Size = new System.Drawing.Size(86, 46);
             this.button3.TabIndex = 12;
             this.button3.Text = "EDITAR CLIENTE ACTUAL";
             this.button3.UseVisualStyleBackColor = true;
@@ -146,7 +147,7 @@
             // 
             this.button4.Location = new System.Drawing.Point(375, 50);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(131, 74);
+            this.button4.Size = new System.Drawing.Size(86, 46);
             this.button4.TabIndex = 13;
             this.button4.Text = "GUARDAR";
             this.button4.UseVisualStyleBackColor = true;
@@ -210,6 +211,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "clientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "clientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.clientes_FormClosing);
             this.Load += new System.EventHandler(this.clientes_Load);

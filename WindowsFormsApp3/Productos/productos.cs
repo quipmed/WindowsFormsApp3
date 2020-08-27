@@ -433,6 +433,15 @@ namespace WindowsFormsApp3
             procedencia.ShowDialog();
         }
 
+        private void productos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (System.Windows.Forms.Application.OpenForms["remicion"] != null)
+            {
+
+                (System.Windows.Forms.Application.OpenForms["remicion"] as Remisiones.remicion).combo2();
+            }
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
 
@@ -440,9 +449,21 @@ namespace WindowsFormsApp3
             {
                 MessageBox.Show("Captura un modelo porfavor", "Falta agregar un modelo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (cbEquipo.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona un equipo valido porfavor", "Falta seleccionar un modelo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cbMarca.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona una marca valida porfavor", "Falta seleccionar una marca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cbProcedencia.SelectedValue == null)
+            {
+                MessageBox.Show("Selecciona una procedencia valida porfavor", "Falta seleccionar una procedencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
-                add( cbMarca.SelectedValue.ToString(),cbEquipo.SelectedValue.ToString(),txtModelo.Text,txtDescripcion.Text,cbProcedencia.SelectedValue.ToString());
+                    add( cbMarca.SelectedValue.ToString(),cbEquipo.SelectedValue.ToString(),txtModelo.Text,txtDescripcion.Text,cbProcedencia.SelectedValue.ToString());
             }
             retrieve();
         }

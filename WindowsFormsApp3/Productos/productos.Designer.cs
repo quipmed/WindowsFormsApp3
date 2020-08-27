@@ -283,6 +283,7 @@
             this.Name = "productos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "productos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.productos_FormClosing);
             this.Load += new System.EventHandler(this.productos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

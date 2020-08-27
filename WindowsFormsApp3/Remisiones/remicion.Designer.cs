@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.gbcliente = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cbAtencion = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbCliente = new System.Windows.Forms.ComboBox();
             this.btEquipo = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.gbProducto = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -55,8 +52,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.idProducto = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.observaciones = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.id_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,14 +61,21 @@
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.observaciones = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.granTotal = new System.Windows.Forms.TextBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.gbcliente.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbProducto.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -83,18 +85,20 @@
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // gbcliente
             // 
             this.gbcliente.Controls.Add(this.button2);
-            this.gbcliente.Controls.Add(this.groupBox3);
             this.gbcliente.Controls.Add(this.groupBox2);
             this.gbcliente.Location = new System.Drawing.Point(12, 12);
             this.gbcliente.Name = "gbcliente";
@@ -103,26 +107,15 @@
             this.gbcliente.TabStop = false;
             this.gbcliente.Text = "Datos del cliente";
             // 
-            // groupBox3
+            // button2
             // 
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.cbAtencion);
-            this.groupBox3.Location = new System.Drawing.Point(321, 16);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(310, 41);
-            this.groupBox3.TabIndex = 35;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Con atencion a     (contacto)";
-            // 
-            // cbAtencion
-            // 
-            this.cbAtencion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbAtencion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbAtencion.FormattingEnabled = true;
-            this.cbAtencion.Location = new System.Drawing.Point(6, 14);
-            this.cbAtencion.Name = "cbAtencion";
-            this.cbAtencion.Size = new System.Drawing.Size(253, 21);
-            this.cbAtencion.TabIndex = 29;
+            this.button2.Location = new System.Drawing.Point(637, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 36);
+            this.button2.TabIndex = 36;
+            this.button2.Text = "Seleccionar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox2
             // 
@@ -154,25 +147,7 @@
             this.btEquipo.TabIndex = 36;
             this.btEquipo.Text = "ADD";
             this.btEquipo.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(265, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 23);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "ADD";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(637, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 36);
-            this.button2.TabIndex = 36;
-            this.button2.Text = "Seleccionar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btEquipo.Click += new System.EventHandler(this.btEquipo_Click);
             // 
             // gbProducto
             // 
@@ -210,6 +185,7 @@
             this.button3.TabIndex = 33;
             this.button3.Text = "ADD";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // cbEquipo
             // 
@@ -279,6 +255,7 @@
             this.btModelo.TabIndex = 33;
             this.btModelo.Text = "ADD";
             this.btModelo.UseVisualStyleBackColor = true;
+            this.btModelo.Click += new System.EventHandler(this.btModelo_Click);
             // 
             // cbModelo
             // 
@@ -307,7 +284,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(80, 20);
             this.textBox1.TabIndex = 25;
-            this.textBox1.Text = "0";
+            this.textBox1.Text = "1";
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // groupBox1
@@ -329,6 +306,7 @@
             this.btMarca.TabIndex = 32;
             this.btMarca.Text = "ADD";
             this.btMarca.UseVisualStyleBackColor = true;
+            this.btMarca.Click += new System.EventHandler(this.btMarca_Click);
             // 
             // cbMarca
             // 
@@ -343,7 +321,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(574, 113);
+            this.button4.Location = new System.Drawing.Point(561, 113);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(108, 44);
             this.button4.TabIndex = 16;
@@ -363,34 +341,13 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.dataGridView2);
-            this.groupBox5.Controls.Add(this.groupBox9);
             this.groupBox5.Controls.Add(this.dataGridView1);
             this.groupBox5.Location = new System.Drawing.Point(12, 291);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(728, 259);
+            this.groupBox5.Size = new System.Drawing.Size(728, 175);
             this.groupBox5.TabIndex = 42;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Generales";
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.observaciones);
-            this.groupBox9.Location = new System.Drawing.Point(6, 172);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(715, 75);
-            this.groupBox9.TabIndex = 28;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Observaciones generales";
-            // 
-            // observaciones
-            // 
-            this.observaciones.Location = new System.Drawing.Point(6, 19);
-            this.observaciones.Multiline = true;
-            this.observaciones.Name = "observaciones";
-            this.observaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.observaciones.Size = new System.Drawing.Size(585, 46);
-            this.observaciones.TabIndex = 27;
             // 
             // dataGridView1
             // 
@@ -487,42 +444,44 @@
             this.subTotal.ReadOnly = true;
             this.subTotal.Width = 74;
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.observaciones);
+            this.groupBox9.Location = new System.Drawing.Point(12, 472);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(595, 75);
+            this.groupBox9.TabIndex = 28;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Observaciones generales";
+            // 
+            // observaciones
+            // 
+            this.observaciones.Location = new System.Drawing.Point(6, 19);
+            this.observaciones.Multiline = true;
+            this.observaciones.Name = "observaciones";
+            this.observaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.observaciones.Size = new System.Drawing.Size(585, 46);
+            this.observaciones.TabIndex = 27;
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(200, 556);
+            this.button5.Location = new System.Drawing.Point(195, 583);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(110, 40);
             this.button5.TabIndex = 20;
             this.button5.Text = "LIMPIAR";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(411, 556);
+            this.button6.Location = new System.Drawing.Point(406, 583);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(110, 40);
             this.button6.TabIndex = 43;
             this.button6.Text = "Imprimir";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView2.Location = new System.Drawing.Point(660, 266);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(55, 10);
-            this.dataGridView2.TabIndex = 44;
-            this.dataGridView2.Visible = false;
             // 
             // pictureBox3
             // 
@@ -537,7 +496,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::WindowsFormsApp3.Properties.Resources.milllogo;
-            this.pictureBox2.Location = new System.Drawing.Point(293, 737);
+            this.pictureBox2.Location = new System.Drawing.Point(329, 771);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(150, 59);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -556,13 +515,84 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Location = new System.Drawing.Point(620, 576);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(113, 46);
+            this.groupBox3.TabIndex = 65;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Total general";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.Location = new System.Drawing.Point(6, 20);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 59;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.textBox5);
+            this.groupBox11.Location = new System.Drawing.Point(620, 524);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(113, 46);
+            this.groupBox11.TabIndex = 64;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "I.V.A General";
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.Color.White;
+            this.textBox5.Location = new System.Drawing.Point(6, 19);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 58;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.granTotal);
+            this.groupBox12.Location = new System.Drawing.Point(620, 472);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(113, 46);
+            this.groupBox12.TabIndex = 63;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Sub total";
+            // 
+            // granTotal
+            // 
+            this.granTotal.BackColor = System.Drawing.Color.White;
+            this.granTotal.Location = new System.Drawing.Point(6, 16);
+            this.granTotal.Name = "granTotal";
+            this.granTotal.ReadOnly = true;
+            this.granTotal.Size = new System.Drawing.Size(100, 20);
+            this.granTotal.TabIndex = 57;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(746, 279);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(300, 150);
+            this.dataGridView2.TabIndex = 66;
+            this.dataGridView2.Visible = false;
+            // 
             // remicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 606);
+            this.ClientSize = new System.Drawing.Size(744, 634);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.groupBox5);
@@ -575,7 +605,6 @@
             this.Text = "remicion";
             this.Load += new System.EventHandler(this.remicion_Load);
             this.gbcliente.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.gbProducto.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
@@ -588,13 +617,19 @@
             this.groupBox6.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,11 +638,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbcliente;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox cbAtencion;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbCliente;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btEquipo;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox gbProducto;
@@ -631,6 +663,17 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox observaciones;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        public System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.TextBox granTotal;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_prod;
         private System.Windows.Forms.DataGridViewTextBoxColumn producto;
@@ -640,11 +683,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn pUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        public System.Windows.Forms.PictureBox pictureBox2;
-        public System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -237,6 +237,11 @@ namespace WindowsFormsApp3.Productos
                 (System.Windows.Forms.Application.OpenForms["productos"] as productos).combo();
 
             }
+            if (System.Windows.Forms.Application.OpenForms["remicion"] != null)
+            {
+
+                (System.Windows.Forms.Application.OpenForms["remicion"] as Remisiones.remicion).combo2();
+            }
         }
     }
 }
