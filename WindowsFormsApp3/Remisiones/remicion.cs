@@ -145,10 +145,10 @@ namespace WindowsFormsApp3.Remisiones
         }
         public void combo2()
         { 
-             marcaCb();
-                modeloCb();
+            // marcaCb();
+              //  modeloCb();
        
-                productoCb();
+                //productoCb();
         
              
 
@@ -340,7 +340,7 @@ namespace WindowsFormsApp3.Remisiones
         {
             if (controlCbMarca == 1)
             {
-                modeloCb();
+              //  modeloCb();
             }
         }
 
@@ -348,13 +348,13 @@ namespace WindowsFormsApp3.Remisiones
         {
             if (controlCbModelo == 1)
             {
-                productoCb();
+               // productoCb();
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (cbMarca.Items.Count == 0)
+            /*if (cbMarca.Items.Count == 0)
             {
                 MessageBox.Show("Captura una marca porfavor", "Falta agregar una marca", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -370,7 +370,7 @@ namespace WindowsFormsApp3.Remisiones
 
             }
             else
-            {
+            {*/
                 if (textBox1.Text == "")
                 {
                     textBox1.Text = "1";
@@ -382,10 +382,10 @@ namespace WindowsFormsApp3.Remisiones
                 int i;
                 i = dataGridView1.Rows.Count;
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[0].Value = cbModelo.SelectedValue;
-                dataGridView1.Rows[i].Cells[1].Value = cbEquipo.Text;
-                dataGridView1.Rows[i].Cells[2].Value = cbMarca.Text;
-                dataGridView1.Rows[i].Cells[3].Value = cbModelo.Text;
+                dataGridView1.Rows[i].Cells[0].Value = '0';
+                dataGridView1.Rows[i].Cells[1].Value = txtEquipo.Text;
+                dataGridView1.Rows[i].Cells[2].Value = txtMarca.Text;
+                dataGridView1.Rows[i].Cells[3].Value = txtModelo.Text;
                 dataGridView1.Rows[i].Cells[4].Value = textBox2.Text;
                 dataGridView1.Rows[i].Cells[5].Value = textBox1.Text;
                 dataGridView1.Rows[i].Cells[6].Value = textBox3.Text;
@@ -401,10 +401,15 @@ namespace WindowsFormsApp3.Remisiones
                 textBox5.Text = (sumTotal * .16).ToString();
                 textBox4.Text = (sumTotal * 1.16).ToString();
 
+            txtEquipo.Text="";
+            txtMarca.Text = "";
+            txtModelo.Text = "";
+            textBox2.Text = "";
+            textBox1.Text = "1";
+            textBox3.Text = "";
+               }
 
-            }
-
-        }
+        //}
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -736,7 +741,7 @@ namespace WindowsFormsApp3.Remisiones
         {
             if (controlCbMarca == 1)
             {
-                modeloCb();
+               // modeloCb();
             }
         }                            //empresa            direccion       rfc                 nombre contacto         //nombre puesto
 
@@ -785,7 +790,13 @@ namespace WindowsFormsApp3.Remisiones
             // Lid.Enabled = true;
             // button1.Visible = true;
         }
-            private void populate(string empresa, string direccion, string rfc)
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void populate(string empresa, string direccion, string rfc)
         {
             dataGridView2.Rows.Add(empresa, direccion, rfc);
         }
@@ -800,11 +811,11 @@ namespace WindowsFormsApp3.Remisiones
             {
                 gbcliente.Enabled = false;
                 gbProducto.Enabled = true;
-                marcaCb();
+              //  marcaCb();
                 controlCbMarca = 1;
-                modeloCb();
+               // modeloCb();
                 controlCbModelo = 1;
-                productoCb();
+                //productoCb();
                 
             dataGridView2.Rows.Clear();
             //SQL STATEMENT

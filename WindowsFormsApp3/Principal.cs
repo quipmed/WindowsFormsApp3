@@ -118,5 +118,22 @@ namespace WindowsFormsApp3
         {
 
         }
+
+        private void cotizacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pruebasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            coti.reportes.cotservimssbasic cotservimssbasic = new coti.reportes.cotservimssbasic();
+            cotservimssbasic.ShowDialog();
+        }
+
+        private void sERVICIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            coti.formcotservimssbasic IMSS = new coti.formcotservimssbasic();
+            IMSS.ShowDialog();
+        }
     }
 }

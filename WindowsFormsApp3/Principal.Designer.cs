@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.rEMISIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pRODUCTOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cONSULTADEREMISIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.puestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rrMedicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.millToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rEMISIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cONSULTADEREMISIONESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cotizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sERVICIOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pruebasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
@@ -53,16 +53,38 @@
             this.menuStrip1.ContextMenuStrip = this.contextMenuStrip1;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rEMISIONESToolStripMenuItem,
-            this.cLIENTESToolStripMenuItem,
-            this.pRODUCTOSToolStripMenuItem,
             this.cONSULTADEREMISIONESToolStripMenuItem,
-            this.puestoToolStripMenuItem});
+            this.cotizacionesToolStripMenuItem,
+            this.pruebasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(503, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rrMedicaToolStripMenuItem,
+            this.millToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(122, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // rrMedicaToolStripMenuItem
+            // 
+            this.rrMedicaToolStripMenuItem.Name = "rrMedicaToolStripMenuItem";
+            this.rrMedicaToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.rrMedicaToolStripMenuItem.Text = "rrMedica";
+            this.rrMedicaToolStripMenuItem.Click += new System.EventHandler(this.rrMedicaToolStripMenuItem_Click);
+            // 
+            // millToolStripMenuItem
+            // 
+            this.millToolStripMenuItem.Name = "millToolStripMenuItem";
+            this.millToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.millToolStripMenuItem.Text = "Mill";
+            this.millToolStripMenuItem.Click += new System.EventHandler(this.millToolStripMenuItem_Click);
             // 
             // rEMISIONESToolStripMenuItem
             // 
@@ -71,20 +93,6 @@
             this.rEMISIONESToolStripMenuItem.Text = "REMISIONES";
             this.rEMISIONESToolStripMenuItem.Click += new System.EventHandler(this.rEMISIONESToolStripMenuItem_Click);
             // 
-            // cLIENTESToolStripMenuItem
-            // 
-            this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
-            this.cLIENTESToolStripMenuItem.Click += new System.EventHandler(this.cLIENTESToolStripMenuItem_Click);
-            // 
-            // pRODUCTOSToolStripMenuItem
-            // 
-            this.pRODUCTOSToolStripMenuItem.Name = "pRODUCTOSToolStripMenuItem";
-            this.pRODUCTOSToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
-            this.pRODUCTOSToolStripMenuItem.Text = "PRODUCTOS";
-            this.pRODUCTOSToolStripMenuItem.Click += new System.EventHandler(this.pRODUCTOSToolStripMenuItem_Click);
-            // 
             // cONSULTADEREMISIONESToolStripMenuItem
             // 
             this.cONSULTADEREMISIONESToolStripMenuItem.Name = "cONSULTADEREMISIONESToolStripMenuItem";
@@ -92,14 +100,28 @@
             this.cONSULTADEREMISIONESToolStripMenuItem.Text = "CONSULTA DE REMISIONES";
             this.cONSULTADEREMISIONESToolStripMenuItem.Click += new System.EventHandler(this.cONSULTADEREMISIONESToolStripMenuItem_Click);
             // 
-            // puestoToolStripMenuItem
+            // cotizacionesToolStripMenuItem
             // 
-            this.puestoToolStripMenuItem.Checked = true;
-            this.puestoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.puestoToolStripMenuItem.Name = "puestoToolStripMenuItem";
-            this.puestoToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
-            this.puestoToolStripMenuItem.Text = "CONTACTO";
-            this.puestoToolStripMenuItem.Click += new System.EventHandler(this.puestoToolStripMenuItem_Click);
+            this.cotizacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sERVICIOToolStripMenuItem});
+            this.cotizacionesToolStripMenuItem.Name = "cotizacionesToolStripMenuItem";
+            this.cotizacionesToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.cotizacionesToolStripMenuItem.Text = "COTIZACIONES";
+            this.cotizacionesToolStripMenuItem.Click += new System.EventHandler(this.cotizacionesToolStripMenuItem_Click);
+            // 
+            // sERVICIOToolStripMenuItem
+            // 
+            this.sERVICIOToolStripMenuItem.Name = "sERVICIOToolStripMenuItem";
+            this.sERVICIOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sERVICIOToolStripMenuItem.Text = "SERVICIO";
+            this.sERVICIOToolStripMenuItem.Click += new System.EventHandler(this.sERVICIOToolStripMenuItem_Click);
+            // 
+            // pruebasToolStripMenuItem
+            // 
+            this.pruebasToolStripMenuItem.Name = "pruebasToolStripMenuItem";
+            this.pruebasToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.pruebasToolStripMenuItem.Text = "pruebas";
+            this.pruebasToolStripMenuItem.Click += new System.EventHandler(this.pruebasToolStripMenuItem_Click);
             // 
             // radioButton2
             // 
@@ -126,29 +148,6 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.Visible = false;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rrMedicaToolStripMenuItem,
-            this.millToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(122, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // rrMedicaToolStripMenuItem
-            // 
-            this.rrMedicaToolStripMenuItem.Name = "rrMedicaToolStripMenuItem";
-            this.rrMedicaToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.rrMedicaToolStripMenuItem.Text = "rrMedica";
-            this.rrMedicaToolStripMenuItem.Click += new System.EventHandler(this.rrMedicaToolStripMenuItem_Click);
-            // 
-            // millToolStripMenuItem
-            // 
-            this.millToolStripMenuItem.Name = "millToolStripMenuItem";
-            this.millToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.millToolStripMenuItem.Text = "Mill";
-            this.millToolStripMenuItem.Click += new System.EventHandler(this.millToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -200,10 +199,7 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem rEMISIONESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pRODUCTOSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cONSULTADEREMISIONESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem puestoToolStripMenuItem;
         public System.Windows.Forms.RadioButton radioButton2;
         public System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -211,5 +207,8 @@
         private System.Windows.Forms.ToolStripMenuItem millToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem cotizacionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sERVICIOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pruebasToolStripMenuItem;
     }
 }

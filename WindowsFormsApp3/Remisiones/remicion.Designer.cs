@@ -35,21 +35,24 @@
             this.btEquipo = new System.Windows.Forms.Button();
             this.gbProducto = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.cbEquipo = new System.Windows.Forms.ComboBox();
+            this.txtEquipo = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btModelo = new System.Windows.Forms.Button();
-            this.cbModelo = new System.Windows.Forms.ComboBox();
+            this.txtModelo = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.cbEquipo = new System.Windows.Forms.ComboBox();
+            this.btModelo = new System.Windows.Forms.Button();
+            this.cbModelo = new System.Windows.Forms.ComboBox();
             this.btMarca = new System.Windows.Forms.Button();
             this.cbMarca = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.idProducto = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -168,8 +171,7 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.button3);
-            this.groupBox10.Controls.Add(this.cbEquipo);
+            this.groupBox10.Controls.Add(this.txtEquipo);
             this.groupBox10.Location = new System.Drawing.Point(147, 19);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(141, 70);
@@ -177,26 +179,12 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Equipo";
             // 
-            // button3
+            // txtEquipo
             // 
-            this.button3.Location = new System.Drawing.Point(51, 46);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(39, 23);
-            this.button3.TabIndex = 33;
-            this.button3.Text = "ADD";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // cbEquipo
-            // 
-            this.cbEquipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbEquipo.FormattingEnabled = true;
-            this.cbEquipo.Location = new System.Drawing.Point(6, 19);
-            this.cbEquipo.Name = "cbEquipo";
-            this.cbEquipo.Size = new System.Drawing.Size(125, 21);
-            this.cbEquipo.TabIndex = 9;
-            this.cbEquipo.SelectedIndexChanged += new System.EventHandler(this.cbEquipo_SelectedIndexChanged);
+            this.txtEquipo.Location = new System.Drawing.Point(12, 25);
+            this.txtEquipo.Name = "txtEquipo";
+            this.txtEquipo.Size = new System.Drawing.Size(117, 20);
+            this.txtEquipo.TabIndex = 1;
             // 
             // groupBox7
             // 
@@ -238,8 +226,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btModelo);
-            this.groupBox4.Controls.Add(this.cbModelo);
+            this.groupBox4.Controls.Add(this.txtModelo);
             this.groupBox4.Location = new System.Drawing.Point(294, 19);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(193, 69);
@@ -247,26 +234,12 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Modelo";
             // 
-            // btModelo
+            // txtModelo
             // 
-            this.btModelo.Location = new System.Drawing.Point(81, 46);
-            this.btModelo.Name = "btModelo";
-            this.btModelo.Size = new System.Drawing.Size(39, 23);
-            this.btModelo.TabIndex = 33;
-            this.btModelo.Text = "ADD";
-            this.btModelo.UseVisualStyleBackColor = true;
-            this.btModelo.Click += new System.EventHandler(this.btModelo_Click);
-            // 
-            // cbModelo
-            // 
-            this.cbModelo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbModelo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbModelo.FormattingEnabled = true;
-            this.cbModelo.Location = new System.Drawing.Point(6, 19);
-            this.cbModelo.Name = "cbModelo";
-            this.cbModelo.Size = new System.Drawing.Size(177, 21);
-            this.cbModelo.TabIndex = 9;
-            this.cbModelo.SelectedIndexChanged += new System.EventHandler(this.cbModelo_SelectedIndexChanged);
+            this.txtModelo.Location = new System.Drawing.Point(6, 24);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(181, 20);
+            this.txtModelo.TabIndex = 1;
             // 
             // groupBox6
             // 
@@ -289,35 +262,21 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btMarca);
-            this.groupBox1.Controls.Add(this.cbMarca);
+            this.groupBox1.Controls.Add(this.txtMarca);
             this.groupBox1.Location = new System.Drawing.Point(12, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(129, 70);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // btMarca
+            // txtMarca
             // 
-            this.btMarca.Location = new System.Drawing.Point(43, 46);
-            this.btMarca.Name = "btMarca";
-            this.btMarca.Size = new System.Drawing.Size(39, 23);
-            this.btMarca.TabIndex = 32;
-            this.btMarca.Text = "ADD";
-            this.btMarca.UseVisualStyleBackColor = true;
-            this.btMarca.Click += new System.EventHandler(this.btMarca_Click);
-            // 
-            // cbMarca
-            // 
-            this.cbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbMarca.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbMarca.FormattingEnabled = true;
-            this.cbMarca.Location = new System.Drawing.Point(8, 19);
-            this.cbMarca.Name = "cbMarca";
-            this.cbMarca.Size = new System.Drawing.Size(114, 21);
-            this.cbMarca.TabIndex = 31;
-            this.cbMarca.SelectedIndexChanged += new System.EventHandler(this.cbMarca_SelectedIndexChanged);
+            this.txtMarca.Location = new System.Drawing.Point(6, 26);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(117, 20);
+            this.txtMarca.TabIndex = 0;
             // 
             // button4
             // 
@@ -328,6 +287,75 @@
             this.button4.Text = "AGREGAR";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(967, 222);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(39, 23);
+            this.button3.TabIndex = 33;
+            this.button3.Text = "ADD";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // cbEquipo
+            // 
+            this.cbEquipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbEquipo.FormattingEnabled = true;
+            this.cbEquipo.Location = new System.Drawing.Point(922, 195);
+            this.cbEquipo.Name = "cbEquipo";
+            this.cbEquipo.Size = new System.Drawing.Size(125, 21);
+            this.cbEquipo.TabIndex = 9;
+            this.cbEquipo.Visible = false;
+            this.cbEquipo.SelectedIndexChanged += new System.EventHandler(this.cbEquipo_SelectedIndexChanged);
+            // 
+            // btModelo
+            // 
+            this.btModelo.Location = new System.Drawing.Point(945, 179);
+            this.btModelo.Name = "btModelo";
+            this.btModelo.Size = new System.Drawing.Size(39, 23);
+            this.btModelo.TabIndex = 33;
+            this.btModelo.Text = "ADD";
+            this.btModelo.UseVisualStyleBackColor = true;
+            this.btModelo.Visible = false;
+            this.btModelo.Click += new System.EventHandler(this.btModelo_Click);
+            // 
+            // cbModelo
+            // 
+            this.cbModelo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbModelo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbModelo.FormattingEnabled = true;
+            this.cbModelo.Location = new System.Drawing.Point(870, 152);
+            this.cbModelo.Name = "cbModelo";
+            this.cbModelo.Size = new System.Drawing.Size(177, 21);
+            this.cbModelo.TabIndex = 9;
+            this.cbModelo.Visible = false;
+            this.cbModelo.SelectedIndexChanged += new System.EventHandler(this.cbModelo_SelectedIndexChanged);
+            // 
+            // btMarca
+            // 
+            this.btMarca.Location = new System.Drawing.Point(968, 307);
+            this.btMarca.Name = "btMarca";
+            this.btMarca.Size = new System.Drawing.Size(39, 23);
+            this.btMarca.TabIndex = 32;
+            this.btMarca.Text = "ADD";
+            this.btMarca.UseVisualStyleBackColor = true;
+            this.btMarca.Visible = false;
+            this.btMarca.Click += new System.EventHandler(this.btMarca_Click);
+            // 
+            // cbMarca
+            // 
+            this.cbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMarca.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbMarca.FormattingEnabled = true;
+            this.cbMarca.Location = new System.Drawing.Point(933, 280);
+            this.cbMarca.Name = "cbMarca";
+            this.cbMarca.Size = new System.Drawing.Size(114, 21);
+            this.cbMarca.TabIndex = 31;
+            this.cbMarca.Visible = false;
+            this.cbMarca.SelectedIndexChanged += new System.EventHandler(this.cbMarca_SelectedIndexChanged);
             // 
             // idProducto
             // 
@@ -575,7 +603,7 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(746, 279);
+            this.dataGridView2.Location = new System.Drawing.Point(916, 264);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(300, 150);
             this.dataGridView2.TabIndex = 66;
@@ -585,8 +613,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 634);
+            this.ClientSize = new System.Drawing.Size(750, 634);
+            this.Controls.Add(this.btModelo);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.cbModelo);
+            this.Controls.Add(this.btMarca);
+            this.Controls.Add(this.cbEquipo);
             this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.cbMarca);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pictureBox3);
@@ -608,14 +642,17 @@
             this.groupBox2.ResumeLayout(false);
             this.gbProducto.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox9.ResumeLayout(false);
@@ -684,5 +721,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.TextBox txtEquipo;
+        private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.TextBox txtMarca;
     }
 }
