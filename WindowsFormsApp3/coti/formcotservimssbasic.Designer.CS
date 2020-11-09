@@ -41,12 +41,20 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.descripcionFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidaddetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preciodetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importedetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preciounitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             this.gbcliente.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -55,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // gbcliente
@@ -153,7 +162,7 @@
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Location = new System.Drawing.Point(6, 52);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(764, 226);
+            this.groupBox3.Size = new System.Drawing.Size(770, 226);
             this.groupBox3.TabIndex = 41;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle";
@@ -168,40 +177,121 @@
             this.importe});
             this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(625, 192);
+            this.dataGridView1.Size = new System.Drawing.Size(668, 192);
             this.dataGridView1.TabIndex = 43;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(5, 284);
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.descripcionFinal});
+            this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView2.Location = new System.Drawing.Point(24, 459);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(632, 130);
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(668, 130);
             this.dataGridView2.TabIndex = 44;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox6);
-            this.groupBox4.Controls.Add(this.dataGridView2);
+            this.groupBox4.Controls.Add(this.txtDescripcion);
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Location = new System.Drawing.Point(12, 159);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(776, 420);
+            this.groupBox4.Size = new System.Drawing.Size(776, 281);
             this.groupBox4.TabIndex = 45;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Descripcion";
             // 
-            // textBox6
+            // txtDescripcion
             // 
-            this.textBox6.Location = new System.Drawing.Point(11, 19);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox6.Size = new System.Drawing.Size(716, 27);
-            this.textBox6.TabIndex = 18;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.txtDescripcion.Location = new System.Drawing.Point(11, 19);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescripcion.Size = new System.Drawing.Size(716, 27);
+            this.txtDescripcion.TabIndex = 18;
+            this.txtDescripcion.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(680, 103);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 36);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // descripcionFinal
+            // 
+            this.descripcionFinal.Frozen = true;
+            this.descripcionFinal.HeaderText = "Decripcion ";
+            this.descripcionFinal.Name = "descripcionFinal";
+            this.descripcionFinal.ReadOnly = true;
+            this.descripcionFinal.Width = 400;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.producto,
+            this.detalle,
+            this.cantidaddetalle,
+            this.preciodetalle,
+            this.importedetalle});
+            this.dataGridView3.Location = new System.Drawing.Point(806, 178);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(620, 262);
+            this.dataGridView3.TabIndex = 46;
+            // 
+            // id
+            // 
+            this.id.Frozen = true;
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // producto
+            // 
+            this.producto.Frozen = true;
+            this.producto.HeaderText = "producto";
+            this.producto.Name = "producto";
+            this.producto.ReadOnly = true;
+            // 
+            // detalle
+            // 
+            this.detalle.Frozen = true;
+            this.detalle.HeaderText = "detalle";
+            this.detalle.Name = "detalle";
+            this.detalle.ReadOnly = true;
+            // 
+            // cantidaddetalle
+            // 
+            this.cantidaddetalle.Frozen = true;
+            this.cantidaddetalle.HeaderText = "cantidaddetalle";
+            this.cantidaddetalle.Name = "cantidaddetalle";
+            this.cantidaddetalle.ReadOnly = true;
+            // 
+            // preciodetalle
+            // 
+            this.preciodetalle.Frozen = true;
+            this.preciodetalle.HeaderText = "preciodetalle";
+            this.preciodetalle.Name = "preciodetalle";
+            this.preciodetalle.ReadOnly = true;
+            // 
+            // importedetalle
+            // 
+            this.importedetalle.Frozen = true;
+            this.importedetalle.HeaderText = "importedetalle";
+            this.importedetalle.Name = "importedetalle";
+            this.importedetalle.ReadOnly = true;
             // 
             // Descripcion
             // 
@@ -223,23 +313,15 @@
             // 
             this.importe.HeaderText = "Importe";
             this.importe.Name = "importe";
-            this.importe.ReadOnly = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(638, 99);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 36);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "Seleccionar";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // formcotservimssbasic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 601);
+            this.ClientSize = new System.Drawing.Size(1370, 601);
+            this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.gbcliente);
             this.Name = "formcotservimssbasic";
@@ -255,6 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -272,13 +355,21 @@
         private System.Windows.Forms.TextBox txtPresentacion;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionFinal;
+        internal System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn detalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidaddetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preciodetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn importedetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn preciounitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn importe;
-        private System.Windows.Forms.Button button1;
     }
 }
