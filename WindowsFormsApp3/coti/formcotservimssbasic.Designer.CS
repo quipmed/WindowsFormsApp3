@@ -29,21 +29,26 @@
         private void InitializeComponent()
         {
             this.gbcliente = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtAtencion = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbCliente = new System.Windows.Forms.ComboBox();
             this.btEquipo = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtAtencion = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.txtPresentacion = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preciounitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iddetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.descripcionFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.descripcionFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,13 +56,9 @@
             this.cantidaddetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preciodetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.importedetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preciounitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbcliente.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -77,6 +78,24 @@
             this.gbcliente.TabIndex = 35;
             this.gbcliente.TabStop = false;
             this.gbcliente.Text = "Datos del cliente";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtAtencion);
+            this.groupBox1.Location = new System.Drawing.Point(358, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(220, 41);
+            this.groupBox1.TabIndex = 37;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Con atencion a:";
+            // 
+            // txtAtencion
+            // 
+            this.txtAtencion.Location = new System.Drawing.Point(6, 14);
+            this.txtAtencion.Name = "txtAtencion";
+            this.txtAtencion.Size = new System.Drawing.Size(208, 20);
+            this.txtAtencion.TabIndex = 0;
+            this.txtAtencion.TextChanged += new System.EventHandler(this.txtMarca_TextChanged);
             // 
             // button2
             // 
@@ -117,24 +136,6 @@
             this.btEquipo.Text = "ADD";
             this.btEquipo.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtAtencion);
-            this.groupBox1.Location = new System.Drawing.Point(358, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(220, 41);
-            this.groupBox1.TabIndex = 37;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Con atencion a:";
-            // 
-            // txtAtencion
-            // 
-            this.txtAtencion.Location = new System.Drawing.Point(6, 14);
-            this.txtAtencion.Name = "txtAtencion";
-            this.txtAtencion.Size = new System.Drawing.Size(208, 20);
-            this.txtAtencion.TabIndex = 0;
-            this.txtAtencion.TextChanged += new System.EventHandler(this.txtMarca_TextChanged);
-            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.txtPresentacion);
@@ -167,6 +168,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(680, 103);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 36);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
@@ -174,12 +185,40 @@
             this.Descripcion,
             this.Cantidad,
             this.preciounitario,
-            this.importe});
+            this.importe,
+            this.iddetalle});
             this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(668, 192);
             this.dataGridView1.TabIndex = 43;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Canitdad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // preciounitario
+            // 
+            this.preciounitario.HeaderText = "P.U.";
+            this.preciounitario.Name = "preciounitario";
+            // 
+            // importe
+            // 
+            this.importe.HeaderText = "Importe";
+            this.importe.Name = "importe";
+            // 
+            // iddetalle
+            // 
+            this.iddetalle.HeaderText = "iddetalle";
+            this.iddetalle.Name = "iddetalle";
             // 
             // dataGridView2
             // 
@@ -195,6 +234,14 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(668, 130);
             this.dataGridView2.TabIndex = 44;
+            // 
+            // descripcionFinal
+            // 
+            this.descripcionFinal.Frozen = true;
+            this.descripcionFinal.HeaderText = "Decripcion ";
+            this.descripcionFinal.Name = "descripcionFinal";
+            this.descripcionFinal.ReadOnly = true;
+            this.descripcionFinal.Width = 400;
             // 
             // groupBox4
             // 
@@ -217,24 +264,6 @@
             this.txtDescripcion.TabIndex = 18;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(680, 103);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 36);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "Seleccionar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // descripcionFinal
-            // 
-            this.descripcionFinal.Frozen = true;
-            this.descripcionFinal.HeaderText = "Decripcion ";
-            this.descripcionFinal.Name = "descripcionFinal";
-            this.descripcionFinal.ReadOnly = true;
-            this.descripcionFinal.Width = 400;
-            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -246,9 +275,9 @@
             this.cantidaddetalle,
             this.preciodetalle,
             this.importedetalle});
-            this.dataGridView3.Location = new System.Drawing.Point(806, 178);
+            this.dataGridView3.Location = new System.Drawing.Point(814, 159);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(620, 262);
+            this.dataGridView3.Size = new System.Drawing.Size(743, 262);
             this.dataGridView3.TabIndex = 46;
             // 
             // id
@@ -293,27 +322,6 @@
             this.importedetalle.Name = "importedetalle";
             this.importedetalle.ReadOnly = true;
             // 
-            // Descripcion
-            // 
-            this.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Canitdad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // preciounitario
-            // 
-            this.preciounitario.HeaderText = "P.U.";
-            this.preciounitario.Name = "preciounitario";
-            // 
-            // importe
-            // 
-            this.importe.HeaderText = "Importe";
-            this.importe.Name = "importe";
-            // 
             // formcotservimssbasic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,9 +335,9 @@
             this.Name = "formcotservimssbasic";
             this.Text = "formcotservimssbasic";
             this.gbcliente.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -371,5 +379,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn preciounitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn importe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iddetalle;
     }
 }
