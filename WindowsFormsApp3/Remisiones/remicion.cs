@@ -796,6 +796,12 @@ namespace WindowsFormsApp3.Remisiones
 
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+        }
+
         private void populate(string empresa, string direccion, string rfc)
         {
             dataGridView2.Rows.Add(empresa, direccion, rfc);
